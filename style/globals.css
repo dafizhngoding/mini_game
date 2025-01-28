@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Fira+Code:wght@300..700&family=Staatliches&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Belanosima", sans-serif;
 }
 
 body {
-    font-family: "Poppins", sans-serif;
     color: #333;
     line-height: 1.4;
     width: 100%;
@@ -13,6 +15,27 @@ body {
     display: flex;
     justify-items: center;
     align-items: center;
+}
+
+.title {
+    text-align: center;
+    font-size: 3rem;
+    text-transform: uppercase;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.action_section {
+    display: flex ;
+    gap: 20px;
 }
 
 /* From Uiverse.io by mrhyddenn */
