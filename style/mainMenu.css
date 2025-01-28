@@ -1,4 +1,8 @@
-
+#mainMenu {
+    background-image: url(../assets/Backgrounds/Bridge/sky\ bridge.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 .title {
     text-align: center;
