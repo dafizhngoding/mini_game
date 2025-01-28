@@ -64,7 +64,7 @@ body {
     right: 0;
     left: 0;
     height: calc(50% - 5px);
-    border: 1px solid #7D8082;
+    border: 1px solid #0f1923;
     transition: all .15s ease;
 }
 

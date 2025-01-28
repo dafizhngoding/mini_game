@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 #mainMenu {
     background-image: url(../assets/Backgrounds/Bridge/sky\ bridge.png);
     background-repeat: no-repeat;
@@ -11,13 +9,26 @@
     font-size: 3rem;
     text-transform: uppercase;
 }
->>>>>>> 3ebbc3b2956b220d22de9d57e956ba2cfe9453be
 .title_section {
     display: flex ;
     justify-content: center;
     flex-direction: column;
     width: 100%;
     border-radius: 10px;
+}
+
+.area_section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 50%;
+    padding: 2rem;
+    background-color: transparent !important;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 2rem;
 }
 
 
