@@ -1,3 +1,17 @@
+<<<<<<< HEAD
+=======
+#mainMenu {
+    background-image: url(../assets/Backgrounds/Bridge/sky\ bridge.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.title {
+    text-align: center;
+    font-size: 3rem;
+    text-transform: uppercase;
+}
+>>>>>>> 3ebbc3b2956b220d22de9d57e956ba2cfe9453be
 .title_section {
     display: flex ;
     justify-content: center;
