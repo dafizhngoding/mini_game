@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-image: url(../assets/Backgrounds/Bridge/castle\ bridge.png);
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.map-container {
+  position: relative;
+  width: 80%;
+  max-width: 800px;
+  height: 300px;
+  background: url("https://via.placeholder.com/800x300") no-repeat center center;
+  background-size: cover;
+  border-radius: 10px;
+}
+
+.title {
+    text-align: center;
+    font-size: 3rem;
+    text-transform: uppercase;
+}
+
+.level {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: yellow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: black;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid #fff;
+  transition: transform 0.3s ease-in-out;
+}
+.level.active {
+  background: orange;
+  transform: scale(1.3);
+}
+.level-1 {
+  top: 120px;
+  left: 50px;
+}
+.level-2 {
+  top: 70px;
+  left: 200px;
+}
+.level-3 {
+  top: 180px;
+  left: 350px;
+}
+.level-4 {
+  top: 90px;
+  left: 500px;
+}
+.level-5 {
+  top: 160px;
+  left: 650px;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Level Map</title>
+    <link rel="stylesheet" href="../../style/level.css" />
+    <link rel="stylesheet" href="../../style/globals.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">Chapter 1</h1>
+      <div class="map-container">
+        <div class="level level-1 active" onclick="selectLevel(1)">1</div>
+        <div class="level level-2" onclick="selectLevel(2)">2</div>
+        <div class="level level-3" onclick="selectLevel(3)">3</div>
+        <div class="level level-4" onclick="selectLevel(4)">4</div>
+        <div class="level level-5" onclick="selectLevel(5)">5</div>
+      </div>
+      <button class="button">
+        <span class="button_lg">
+          <span class="button_sl"></span>
+          <span class="button_text">Next Chapter</span>
+        </span>
+      </button>
+    </div>
+
+    <script src="../../script/level.js"></script>
+  </body>
+</html>
