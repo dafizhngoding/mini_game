@@ -9,11 +9,23 @@ export class Player {
         this.image = image;
     }
 
-    move(input, boundaries = [], image) {
-        
+    move(input, boundaries = [], image, level) {
         let newX = this.x;
         let newY = this.y;
 
+
+        switch (level) {
+            case "level_1":
+                if (newY > 610) {
+                    newY = 610
+                } else if (newY < 110) {
+                    newY = 110
+                }
+
+                if (newX < -50) {
+                    newX = -50
+                }
+        }
         if (input.keys.w) newY -= this.speed;
         if (input.keys.s) newY += this.speed;
         if (input.keys.a) newX -= this.speed;
@@ -23,6 +35,8 @@ export class Player {
             this.x = newX;
             this.y = newY;
         }
+
+        return {y: newY, x: newX}
     }
 
     collidesWithBoundaries(newX, newY, boundaries) {
