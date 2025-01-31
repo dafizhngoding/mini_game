@@ -13,13 +13,16 @@ export class Player {
         let newX = this.x;
         let newY = this.y;
 
+       
+        console.log(window.innerHeight - 610);
+
 
         switch (level) {
             case "level_1":
-                if (newY > 610) {
-                    newY = 610
-                } else if (newY < 110) {
-                    newY = 110
+                if (newY > window.innerHeight - 168) {
+                    newY = window.innerHeight -168
+                } else if ( newY < window.innerHeight - 668) {
+                    newY = window.innerHeight - 668
                 }
 
                 if (newX < -50) {
