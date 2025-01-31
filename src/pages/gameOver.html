@@ -3,28 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../style/gameOver.css" />
-    <link rel="stylesheet" href="../../style/globals.css" />
-    <title>GameOver</title>
+    <title>Game Over</title>
+    <link rel="stylesheet" href="/style/globals.css" />
+    <link rel="stylesheet" href="/style/gameOver.css" />
   </head>
   <body>
-    <div class="game-over-container">
-      <h1 class="game-over-text">You Died</h1>
-      <p class="score-text">Misi Gagal Lakukan Lebih Lagi Ya...</p>
-      <div class="btn-container">
-        <button class="button">
-          <span class="button_lg">
-            <span class="button_sl"></span>
-            <span class="button_text">Back To Home</span>
-          </span>
-        </button>
-        <button class="button">
-          <span class="button_lg">
-            <span class="button_sl"></span>
-            <span class="button_text">Try Again</span>
-          </span>
-        </button>
+    <section class="container">
+      <div class="game-container">
+        <h1 class="title">You Died</h1>
+        <p class="level-text">Level <span>1</span></p>
+        <div class="game-box">
+          <p>💀</p>
+        </div>
+        <div class="btn-container">
+          <a href="">
+            <button class="restart">&#x21bb;</button>
+          </a>
+          <a href="/src/pages/mainMenu.html">
+            <button class="play">&#x2302;</button>
+          </a>
+        </div>
       </div>
-    </div>
+    </section>
   </body>
 </html>
