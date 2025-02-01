@@ -1,3 +1,7 @@
+import {
+    collision
+} from "./collision.mjs";
+
 export class Player {
     constructor(x, y, width, height, name, speed, image) {
         this.x = x;
@@ -9,19 +13,24 @@ export class Player {
         this.image = image;
     }
 
-    move(input, boundaries = [], image, level) {
+    setCollision(player, ctx) {
+        const coll = new collision(player.x + 50, player.y + 40, player.width - 100, player.height - 70)
+        return coll.draw(ctx);
+    }
+
+    move(input, boundaries = [], image, level, mobs) {
         let newX = this.x;
         let newY = this.y;
 
-       
+
         console.log(window.innerHeight - 610);
 
 
         switch (level) {
             case "level_1":
                 if (newY > window.innerHeight - 168) {
-                    newY = window.innerHeight -168
-                } else if ( newY < window.innerHeight - 668) {
+                    newY = window.innerHeight - 168
+                } else if (newY < window.innerHeight - 668) {
                     newY = window.innerHeight - 668
                 }
 
@@ -34,22 +43,20 @@ export class Player {
         if (input.keys.a) newX -= this.speed;
         if (input.keys.d) newX += this.speed;
 
-        if (!this.collidesWithBoundaries(newX, newY, boundaries)) {
-            this.x = newX;
-            this.y = newY;
+
+
+        this.y = newY
+        this.x = newX
+
+        return {
+            y: newY,
+            x: newX
         }
-
-        return {y: newY, x: newX}
     }
 
-    collidesWithBoundaries(newX, newY, boundaries) {
-        return boundaries.some(boundary => (
-            newX < boundary.x + boundary.width &&
-            newX + this.width > boundary.x &&
-            newY < boundary.y + boundary.height &&
-            newY + this.height > boundary.y
-        ));
-    }
+   
+
+   
 
     draw(ctx) {
         const playerImage = new Image();

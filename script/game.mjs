@@ -65,17 +65,14 @@ console.log(currentLevel);
 
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // console.log(input.showClickedButton());
-    currentLevel.player.move(input, undefined, undefined, currentLevel.name);
-    console.log(currentLevel.player.move(input, undefined, undefined, currentLevel.name));
-    // Deteksi tabrakan dengan semua mobs
-    // currentLevel.mobs.forEach(mob => currentLevel.player.detectCollision(mob));
+     let allCollisions = [currentLevel.player, ...currentLevel.mob];
+    currentLevel.player.setCollision(currentLevel.player, ctx)
+    currentLevel.mob.map((mob, index) => mob.setCollision(currentLevel.mob[index], ctx));
+    currentLevel.player.move(input, undefined, undefined, currentLevel.name, currentLevel.mob);
     currentLevel.mob.map(mobs => mobs.draw(ctx));
     currentLevel.mob.map(mobs => mobs.followPlayer(currentLevel.player, currentLevel.mob))
-   
-    // currentLevel.mobs.forEach(mob => mob.draw(ctx));
+    currentLevel.item.map(item => item.draw(ctx));
     currentLevel.player.draw(ctx);
-    // currentLevel.mobs.forEach(mob => mob.draw(ctx));
 
     requestAnimationFrame(gameLoop);
 }
