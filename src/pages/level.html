@@ -26,9 +26,8 @@
         <span class="button_text">Next Chapter </span>
       </span>
     </button>
-    <!-- <button class="next-chapter" id="next-chapter-btn">Next Chapter</button> -->
 
-    <!-- Popup Modal -->
+    <!-- Next Chapter Popup Modal -->
     <div class="popup" id="popup">
       <div class="popup-content">
         <span class="close-btn" id="close-btn">&times;</span>
@@ -37,44 +36,77 @@
       </div>
     </div>
 
+    <!-- Level Popup Modal -->
+    <div class="popup" id="level-popup">
+      <div class="popup-content">
+        <span class="close-btn" id="close-level-btn">&times;</span>
+        <h2 id="level-title">Enter Level</h2>
+        <p id="level-description">Are you sure you want to enter this level?</p>
+        <button class="button" id="enter-level-btn">
+          <span class="button_lg">
+            <span class="button_sl"></span>
+            <span class="button_text">Enter Levek</span>
+          </span>
+        </button>
+        <button class="button" id="cancel-level-btn">
+          <span class="button_lg">
+            <span class="button_sl"></span>
+            <span class="button_text">Cancel</span>
+          </span>
+        </button>
+      </div>
+    </div>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const levels = document.querySelectorAll(".level");
+        const levelPopup = document.getElementById("level-popup");
+        const levelTitle = document.getElementById("level-title");
+        const enterLevelBtn = document.getElementById("enter-level-btn");
+        const cancelLevelBtn = document.getElementById("cancel-level-btn");
+        const closeLevelBtn = document.getElementById("close-level-btn");
+        const nextChapterBtn = document.getElementById("next-chapter-btn");
+        const nextChapterPopup = document.getElementById("popup");
+        const closePopupBtn = document.getElementById("close-btn");
+        let selectedLevel = null;
 
         levels.forEach((level) => {
           level.addEventListener("click", function () {
-            const levelNumber = this.getAttribute("data-level");
             if (!this.classList.contains("locked")) {
-              alert(`Anda memilih Level ${levelNumber}`);
-              this.classList.add("completed");
+              selectedLevel = this.getAttribute("data-level");
+              levelTitle.textContent = `Enter Level ${selectedLevel}`;
+              levelPopup.style.display = "flex";
             }
           });
         });
 
-        // Simulasikan level yang terkunci
-        for (let i = 2; i <= levels.length; i++) {
-          levels[i - 1].classList.add("locked");
-        }
-
-        // Buka level pertama
-        levels[0].classList.remove("locked");
-
-        // Show popup for next chapter
-        const nextChapterButton = document.getElementById("next-chapter-btn");
-        const popup = document.getElementById("popup");
-        const closeBtn = document.getElementById("close-btn");
-
-        nextChapterButton.addEventListener("click", function () {
-          popup.style.display = "flex";
+        enterLevelBtn.addEventListener("click", function () {
+          alert(`Entering Level ${selectedLevel}`);
+          levelPopup.style.display = "none";
         });
 
-        closeBtn.addEventListener("click", function () {
-          popup.style.display = "none";
+        cancelLevelBtn.addEventListener("click", function () {
+          levelPopup.style.display = "none";
+        });
+
+        closeLevelBtn.addEventListener("click", function () {
+          levelPopup.style.display = "none";
+        });
+
+        nextChapterBtn.addEventListener("click", function () {
+          nextChapterPopup.style.display = "flex";
+        });
+
+        closePopupBtn.addEventListener("click", function () {
+          nextChapterPopup.style.display = "none";
         });
 
         window.addEventListener("click", function (event) {
-          if (event.target === popup) {
-            popup.style.display = "none";
+          if (event.target === levelPopup) {
+            levelPopup.style.display = "none";
+          }
+          if (event.target === nextChapterPopup) {
+            nextChapterPopup.style.display = "none";
           }
         });
       });
