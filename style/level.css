@@ -157,6 +157,12 @@ header {
     margin-bottom: 20px;
 }
 
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
 .popup-content p {
     font-size: 18px;
     margin-bottom: 20px;

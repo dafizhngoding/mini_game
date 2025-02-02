@@ -1,7 +1,11 @@
 body {
+  margin-top: 5rem;
   display: flex;
+  background-image: url("../assets/Backgrounds/Bridge/sky\ bridge.png");
+  background-size: cover;
   justify-content: center;
   align-items: center;
+  max-height: 100vh;
 }
 .title {
   text-align: center;
