@@ -14,7 +14,7 @@
     display: flex;
     flex-direction: column;
     gap: 5rem;
-        height: 200vh;
+    height: 200vh;
 
 }
 
@@ -151,8 +151,21 @@
     background-color: #ff4655;
 }
 
-.action-button { 
+.action-button {
     margin-top: 40px;
-    display: flex ;
+    display: flex;
     gap: 20px;
+}
+
+.input-setting {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    width: 50%;
+    height: 90%;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: end;
+    text-transform: uppercase;
 }

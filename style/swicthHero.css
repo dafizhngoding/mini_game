@@ -1,0 +1,159 @@
+.main {
+    width: 100%;
+    height: 100vh;
+    padding: 2rem;
+    display: flex;
+    gap: 40px;
+    /* background-image: url(/assets/Backgrounds/Bridge/sky\ bridge.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -90;
+    position: relative; */
+}
+
+section {
+    width: 50%;
+    height: 100%;
+    /* background-color: red; */
+    padding: 10px;
+}
+
+#sec1 {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    /* background-color: red; */
+    padding-left: 100px;
+}
+
+#sec2 {
+    /* background-color: blue; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#sec2>img {
+    width: 500px;
+    height: 500px;
+    /* object-fit: cover; */
+}
+
+.grid_hero {
+    display: grid;
+    grid-template-columns: repeat(2, 200px);
+    grid-template-rows: repeat(2, 270px);
+    gap: 30px;
+    /* background-color: blue; */
+}
+
+
+
+.header>p {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.header>h1 {
+    font-size: 3rem;
+    text-transform: uppercase;
+
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 190px;
+    /* overflow: hidden; */
+    height: 254px;
+    border: 1px solid #0f1923;
+    transition: all .3s ease-in-out;
+    /* border-radius: 10px; */
+}
+
+.card:hover {
+    scale: 0.8;
+}
+
+.card>div {
+    width: 100%;
+    height: 50%;
+
+}
+
+.card>.card_head {
+    background-color: #0f1923;
+    clip-path: polygon(100% 0, 0 100%, 0 100%, 0 0);
+    overflow: visible;
+    position: relative;
+    bottom: 0;
+    right: 0;
+    transition: all .3s ease-in-out;
+    pointer-events: none;
+    z-index: 9;
+
+}
+
+/* .card_head::after {
+    content: "";
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: #0f1923;
+
+    clip-path: polygon(100% 0, 0 100%, 0 100%, 0 0);
+    background: inherit;
+    z-index: 1;
+} */
+
+.card_head>img {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    z-index: 999;
+    /* transform: translate(-50%, -50%); */
+    /* top: 50%;
+     left: 50%; */
+
+}
+
+
+.card:hover>.card_head {
+    bottom: 20px;
+    right: 20px;
+    transition: all .3s ease-in-out;
+}
+
+.card:hover>.card_body {
+    top: 20px;
+    right: -20px;
+    transition: all .3s ease-in-out;
+
+}
+
+.card>.card_body {
+    background-color: #ff4655;
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 0% 100%);
+    padding-right: 10px;
+    position: relative;
+    transition: all .3s ease-in-out;
+    top: 0;
+    right: 0;
+
+}
+
+.abs_txt {
+    position: relative;
+    /* left: 20px; */
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    /* justify-content: end; */
+}

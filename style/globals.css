@@ -31,7 +31,6 @@ body {
 
 
 
-/* From Uiverse.io by mrhyddenn */
 .button {
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -150,3 +149,5 @@ body {
 .button:hover .button_lg::after {
     background-color: #fff;
 }
+
+

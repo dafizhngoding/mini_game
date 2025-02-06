@@ -4,12 +4,13 @@ import {
 import {
     LevelManager
 } from "./class/level.mjs";
-import {
-    Player
-} from "./class/player.mjs";
+// import {
+//     Player
+// } from "./class/player.mjs";
 import {
     CreateLevel_1
 } from "./levels/level_1.mjs";
+import { itemsDetectorColl } from "./utils/collision_detector_items.mjs";
 
 const canvas = document.getElementById("gameCanvas");
 canvas.width = window.innerWidth;
@@ -63,16 +64,25 @@ console.log(CreateLevel_1().player.move(input, boundaries));
 
 console.log(currentLevel);
 
+
 function gameLoop() {
+
+    // storage
+    const coll = sessionStorage.getItem("collectionPlayer")
+
+
+
+    //  logic
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-     let allCollisions = [currentLevel.player, ...currentLevel.mob];
     currentLevel.player.setCollision(currentLevel.player, ctx)
-    currentLevel.mob.map((mob, index) => mob.setCollision(currentLevel.mob[index], ctx));
-    currentLevel.player.move(input, undefined, undefined, currentLevel.name, currentLevel.mob);
-    currentLevel.mob.map(mobs => mobs.draw(ctx));
-    currentLevel.mob.map(mobs => mobs.followPlayer(currentLevel.player, currentLevel.mob))
+    currentLevel.player.move(input, undefined, undefined, currentLevel.name, undefined);
     currentLevel.item.map(item => item.draw(ctx));
     currentLevel.player.draw(ctx);
+    const allObjects = [currentLevel.player, ...currentLevel.item];
+    const item = itemsDetectorColl(allObjects)
+    currentLevel.player.collectItems(item, currentLevel.name,input)
+    itemsDetectorColl(allObjects)
 
     requestAnimationFrame(gameLoop);
 }

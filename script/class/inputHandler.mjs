@@ -1,12 +1,16 @@
 export class InputHandler {
     constructor() {
-        this.keys = {
-            w: false,
-            a: false,
-            s: false,
-            d: false,
-            e: false
+       const savedSettings = sessionStorage.getItem('gameSettings');
+       const defaultSettings = {
+           w: false,
+           a: false,
+           s: false,
+           d: false,
+           e: false,
+           f: false,
         };
+        
+        this.keys = savedSettings ? JSON.parse(savedSettings) : defaultSettings;
 
         document.addEventListener("keydown", (event) => {
             if (this.keys.hasOwnProperty(event.key)) {

@@ -1,4 +1,7 @@
 import {
+    dataItemsLVL1
+} from "../../data/level_1.mjs";
+import {
     collision
 } from "./collision.mjs";
 
@@ -54,9 +57,53 @@ export class Player {
         }
     }
 
-   
+    collectItems(item = {}, level, input) {
+        let dataItems;
 
-   
+        if (item === undefined) {
+            console.log("no item detected");
+            return;
+        }
+
+        switch (level) {
+            case "level_1":
+                dataItems = dataItemsLVL1;
+                break;
+            default:
+                console.log("Level tidak ditemukan");
+                return;
+        }
+
+        const itemsFilter = dataItems.find(itm => itm.id === item.items?.id);
+        console.log("filter", itemsFilter);
+
+        if (input.keys.f) {
+            let collectionSession = JSON.parse(sessionStorage.getItem("collectionPlayer")) || [];
+
+            if (!itemsFilter) {
+                console.log("Item tidak ditemukan dalam dataItems");
+                return;
+            }
+
+            const isDuplicate = collectionSession.some(itm => itm.id === itemsFilter.id);
+
+            if (!isDuplicate) {
+                collectionSession.push(itemsFilter);
+                console.log("Item baru ditambahkan:", itemsFilter);
+            } else {
+                console.log("Item sudah ada, tidak ditambahkan:", itemsFilter);
+            }
+
+            collectionSession = [...new Map(collectionSession.map(itm => [itm.id, itm])).values()];
+
+            sessionStorage.setItem("collectionPlayer", JSON.stringify(collectionSession));
+
+            console.log("Collection disimpan:", collectionSession);
+        }
+    }
+
+
+
 
     draw(ctx) {
         const playerImage = new Image();
