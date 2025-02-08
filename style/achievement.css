@@ -1,11 +1,20 @@
 body {
-  margin-top: 5rem;
+  margin-top: 15rem;
+  text-align: center;
   display: flex;
-  background-image: url("../assets/Backgrounds/Bridge/sky\ bridge.png");
-  background-size: cover;
   justify-content: center;
   align-items: center;
+  background-image: url("../assets/Backgrounds/Forest/game_background_4.png");
+  background-size: cover;
   max-height: 100vh;
+}
+
+.achievement-container {
+  background-color: white;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 32px;
+  padding: 50px;
+  height: 800px;
 }
 .title {
   text-align: center;
@@ -17,7 +26,7 @@ body {
 .achievements {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 50px;
   padding: 20px;
 }
 .achievement {

@@ -8,62 +8,68 @@
     <link rel="stylesheet" href="/style/globals.css" />
   </head>
   <body>
-    <header>
-      <h1 class="title">Chapter 1</h1>
-    </header>
+    <div class="shadow">
+      <header>
+        <h1 class="title">Chapter 1</h1>
+      </header>
 
-    <div class="roadmap">
-      <div class="level" data-level="1">1</div>
-      <div class="level" data-level="2">2</div>
-      <div class="level" data-level="3">3</div>
-      <div class="level" data-level="4">4</div>
-      <div class="level" data-level="5">5</div>
-    </div>
-
-    <div class="button-container">
-      <a href="/src/pages/mainMenu.html">
-        <button class="button">
-          <span class="button_lg">
-            <span class="button_sl"></span>
-            <span class="button_text">Main Menu</span>
-          </span>
-        </button>
-      </a>
-      <button class="button" id="next-chapter-btn">
-        <span class="button_lg">
-          <span class="button_sl"></span>
-          <span class="button_text">Next Chapter </span>
-        </span>
-      </button>
-    </div>
-
-    <!-- Next Chapter Popup Modal -->
-    <div class="popup" id="popup">
-      <div class="popup-content">
-        <span class="close-btn" id="close-btn">&times;</span>
-        <h2>Coming Soon</h2>
-        <p>Chapter 2 is under development. Stay tuned for the next chapter!</p>
+      <div class="roadmap">
+        <div class="level" data-level="1">1</div>
+        <div class="level" data-level="2">2</div>
+        <div class="level" data-level="3">3</div>
+        <div class="level" data-level="4">4</div>
+        <div class="level" data-level="5">5</div>
       </div>
-    </div>
 
-    <!-- Level Popup Modal -->
-    <div class="popup" id="level-popup">
-      <div class="popup-content">
-        <span class="close-btn" id="close-level-btn">&times;</span>
-        <h2 id="level-title">Enter Level</h2>
-        <p id="level-description">Are you sure you want to enter this level?</p>
-        <button class="button" id="enter-level-btn">
+      <div class="button-container">
+        <a href="/src/pages/mainMenu.html">
+          <button class="button">
+            <span class="button_lg">
+              <span class="button_sl"></span>
+              <span class="button_text">Main Menu</span>
+            </span>
+          </button>
+        </a>
+        <button class="button" id="next-chapter-btn">
           <span class="button_lg">
             <span class="button_sl"></span>
-            <span class="button_text">Enter Levek</span>
+            <span class="button_text">Next Chapter </span>
           </span>
         </button>
-        <button class="button" id="cancel-level-btn">
-          <span class="button_lg">
-            <span class="button_sl"></span>
-            <span class="button_text">Cancel</span>
-          </span>
-        </button>
+      </div>
+
+      <!-- Next Chapter Popup Modal -->
+      <div class="popup" id="popup">
+        <div class="popup-content">
+          <span class="close-btn" id="close-btn">&times;</span>
+          <h2>Coming Soon</h2>
+          <p>
+            Chapter 2 is under development. Stay tuned for the next chapter!
+          </p>
+        </div>
+      </div>
+
+      <!-- Level Popup Modal -->
+      <div class="popup" id="level-popup">
+        <div class="popup-content">
+          <span class="close-btn" id="close-level-btn">&times;</span>
+          <h2 id="level-title">Enter Level</h2>
+          <p id="level-description">
+            Are you sure you want to enter this level?
+          </p>
+          <button class="button" id="enter-level-btn">
+            <span class="button_lg">
+              <span class="button_sl"></span>
+              <span class="button_text">Enter Levek</span>
+            </span>
+          </button>
+          <button class="button" id="cancel-level-btn">
+            <span class="button_lg">
+              <span class="button_sl"></span>
+              <span class="button_text">Cancel</span>
+            </span>
+          </button>
+        </div>
       </div>
     </div>
 

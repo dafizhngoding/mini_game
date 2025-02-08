@@ -1,3 +1,16 @@
+body {
+    background-image: url("/assets/Backgrounds/Forest/game_background_3.png");
+    height: 100vh;
+    background-repeat: no-repeat;
+}
+
+.setting-container {
+    background-color: white;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 32px;
+    margin-inline: 100px;
+}
+
 .option-section-selection {
     width: 100%;
     display: flex;
@@ -14,7 +27,6 @@
     display: flex;
     flex-direction: column;
     gap: 5rem;
-    height: 200vh;
 
 }
 
