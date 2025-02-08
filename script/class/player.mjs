@@ -1,5 +1,6 @@
 import {
-    dataItemsLVL1
+    dataItemsLVL1,
+    removeItems
 } from "../../data/level_1.mjs";
 import {
     collision
@@ -14,6 +15,7 @@ export class Player {
         this.name = name;
         this.speed = speed;
         this.image = image;
+        this.zIndex = 2;
     }
 
     setCollision(player, ctx) {
@@ -26,7 +28,7 @@ export class Player {
         let newY = this.y;
 
 
-        console.log(window.innerHeight - 610);
+        // console.log(window.innerHeight - 610);
 
 
         switch (level) {
@@ -57,52 +59,51 @@ export class Player {
         }
     }
 
-    collectItems(item = {}, level, input) {
-        let dataItems;
+collectItems(item = {}, level, input, items = []) {
+    let dataItems;
+    
 
-        if (item === undefined) {
-            console.log("no item detected");
+    // Cek apakah item terdeteksi
+   if (!item || !item.items) {
+       return;
+   }
+
+    // Tentukan dataItems berdasarkan level
+    switch (level) {
+        case "level_1":
+            dataItems = dataItemsLVL1;
+            break;
+        default:
             return;
-        }
-
-        switch (level) {
-            case "level_1":
-                dataItems = dataItemsLVL1;
-                break;
-            default:
-                console.log("Level tidak ditemukan");
-                return;
-        }
-
-        const itemsFilter = dataItems.find(itm => itm.id === item.items?.id);
-        console.log("filter", itemsFilter);
-
-        if (input.keys.f) {
-            let collectionSession = JSON.parse(sessionStorage.getItem("collectionPlayer")) || [];
-
-            if (!itemsFilter) {
-                console.log("Item tidak ditemukan dalam dataItems");
-                return;
-            }
-
-            const isDuplicate = collectionSession.some(itm => itm.id === itemsFilter.id);
-
-            if (!isDuplicate) {
-                collectionSession.push(itemsFilter);
-                console.log("Item baru ditambahkan:", itemsFilter);
-            } else {
-                console.log("Item sudah ada, tidak ditambahkan:", itemsFilter);
-            }
-
-            collectionSession = [...new Map(collectionSession.map(itm => [itm.id, itm])).values()];
-
-            sessionStorage.setItem("collectionPlayer", JSON.stringify(collectionSession));
-
-            console.log("Collection disimpan:", collectionSession);
-        }
     }
+    // Proses pengumpulan item jika tombol 'f' ditekan
+    if (input.keys.f) {
+        let collectionSession = JSON.parse(sessionStorage.getItem("collectionPlayer")) || [];
+        // Cek apakah item sudah ada di sessionStorage
+        const isDuplicate = collectionSession.some(itm => itm?.id === item.items?.id);
 
+        if (!isDuplicate) {
+                collectionSession.push(item.items);
+            removeItems(item.items?.id);
+            console.log(removeItems(item.items?.id));
+        } else {
+        }
 
+        // Filter ulang untuk pastikan tidak ada item null
+        collectionSession = collectionSession.filter(itm => itm !== null && itm !== undefined);
+
+        // Hapus duplikat berdasarkan ID
+        collectionSession = [...new Map(collectionSession.map(itm => [itm?.id, itm])).values()];
+
+        // Simpan koleksi ke sessionStorage
+        sessionStorage.setItem("collectionPlayer", JSON.stringify(collectionSession));
+    }
+}
+
+ resetPosition(newX, newY) {
+     this.x = newX;
+     this.y = newY;
+ }
 
 
     draw(ctx) {

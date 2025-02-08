@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>level 1</title>
+    <link rel="stylesheet" href="/style/levels/Alls.css">
+    <link rel="stylesheet" href="/style/levels/level1.css">
+</head>
+
+<body id="level_1">
+    <div class="abs_display">
+        <p class="game_ket">1</p>
+        <p id="level">level_1</p>
+        <div>
+            <div class="player_hp_bar">
+                <div></div>
+            </div>
+            <div class="stage_text" id="stageText">
+                <h1>stage</h1>
+                <h1 id="state_stage">1</h1>
+            </div>
+        </div>
+        <div id="mission">
+            <div class="mission_box">
+                <div class="mission_item">
+                    <p>collect all item </p>
+                    <div>
+                        <p id="item">0/4</p>
+                    </div>
+                </div>
+                <div class="mission_item">
+                    <p>stage </p>
+                    <div>
+                        <p id="stage">1/4</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="game">
+        <canvas id="gameCanvas" class="level_1_bg"></canvas>
+    </div>
+    <script type="module" src="/script/index.mjs"></script>
+    <!-- <script type="module" src="/script/setting/level.mjs"></script> -->
+</body>
+
+</html>

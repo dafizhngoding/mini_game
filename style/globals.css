@@ -1,13 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Fira+Code:wght@300..700&family=Staatliches&display=swap');
 
 
-@font-face {
-    font-family: "FontAwesome";
-    src: url("assets/fonts/fa-solid-900.woff2") format("woff2"),
-         url("assets/fonts/fa-solid-900.woff") format("woff");
-    font-weight: 900;
-    font-style: normal;
-}
+
 
 * {
     margin: 0;

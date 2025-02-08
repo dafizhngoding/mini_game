@@ -2,17 +2,123 @@
     display: none;
 }
 
-.level_1_bg { 
+.level_1_bg {
     background-image: url('/assets/Backgrounds/Forest/game_background_1.png');
     background-repeat: no-repeat;
     background-size: cover;
+    background-clip: border-box;
     width: 100%;
     height: 100%;
+    position: fixed;
+    /* font-family: "poppins", "sans-serif"; */
     scroll-behavior: smooth;
-    -webkit-scrollbar-width: horizontal;
-    scrollbar-width: 0px ;
+    /* -webkit-scrollbar-width: horizontal; */
+    /* scrollbar-width: 0px ; */
 }
+
 .game {
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
 }
+
+.abs_display {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 9;
+    background-color: transparent;
+    display: flex;
+    gap: 20px;
+    /* padding: 5px; */
+    padding-bottom: 30px;
+}
+
+.abs_display>div {
+    width: 50%;
+    height: 100%;
+    /* background-color: red; */
+    padding: 5px;
+    /* display: flex;
+    justify-content: start; */
+}
+
+.abs_display>#level {
+    display: none;
+}
+
+#mission {
+    display: flex;
+    justify-content: end;
+    padding-right: 20px;
+    font-size: 20px;
+}
+
+.mission_box {
+    width: 50%;
+    height: 30%;
+    background-color: white;
+    opacity: 60%;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mission_item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mission_item>div {
+    display: flex;
+    gap: 5px;
+}
+
+.player_hp_bar {
+    width: 500px;
+    height: 10px;
+    background: red;
+    border-radius: 30px;
+}
+
+.player_hp_bar {
+    width: 500px;
+    height: 10px;
+    background: red;
+    border-radius: 30px;
+}
+
+.player_hp_bar>div {
+    width: 90%;
+    height: 10px;
+    background: greenyellow;
+    border-radius: 30px;
+}
+
+.stage_text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-transform: uppercase;
+    color: white;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    font-size: 30px;
+    transition: all 0.3 ease-in-out;
+    scale: 0;
+}
+
+.show {
+    scale: 1;
+    transition: all 0.3 ease-in-out;
+
+}
+
+.hide {
+    scale: 0;
+    transition: all 0.3 ease-in-out;
+}
+

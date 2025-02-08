@@ -8,6 +8,7 @@ export class Item {
         this.id = id;
         this.name = name;
         this.type = type;
+        this.zIndex = 1;
         this.image = image;
     }
 
