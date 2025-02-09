@@ -3,27 +3,76 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Game Over</title>
-    <link rel="stylesheet" href="/style/globals.css" />
-    <link rel="stylesheet" href="/style/gameOver.css" />
+    <title>Mission Success</title>
+    <link rel="stylesheet" href="/style/mission_success.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #121212;
+        color: #ffffff;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      .container {
+        text-align: center;
+        opacity: 0;
+        transform: scale(0);
+        animation: fadeInScale 0.5s ease-in-out forwards;
+      }
+
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        color: #4caf50;
+      }
+
+      p {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+      }
+
+      button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: all 0.3s ease-in-out;
+      }
+
+      button:hover {
+        background-color: #388e3c;
+      }
+
+      @keyframes fadeInScale {
+        0% {
+          opacity: 0;
+          transform: scale(0);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      } 
+    </style>
   </head>
   <body>
-    <section class="container">
-      <div class="game-container">
-        <h1 class="title">You Died</h1>
-        <p class="level-text">Level <span>1</span></p>
-        <div class="game-box">
-          <p>💀</p>
-        </div>
-        <div class="btn-container">
-          <a href="">
-            <button class="restart">&#x21bb;</button>
-          </a>
-          <a href="/src/pages/mainMenu.html">
-            <button class="play">&#x2302;</button>
-          </a>
+    <div class="container">
+      <div class="message-box">
+        <h1>Mission Success!</h1>
+        <p>Congratulations! You have completed the mission.</p>
+        <div class="button-container">
+          <a href="/src/pages/mainMenu.html" class="button">Main Menu</a>
+          <a href="/src/pages/nextLevel.html" class="button">Next Level</a>
         </div>
       </div>
-    </section>
+    </div>
   </body>
 </html>

@@ -1,12 +1,14 @@
 body {
-  margin-top: 15rem;
+  margin-top: 5rem;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("../assets/Backgrounds/Forest/game_background_4.png");
+  background-image: url("../assets/Backgrounds/Bridge/forest bridge.png");
   background-size: cover;
   background-repeat: no-repeat;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 .achievement-container {
@@ -19,6 +21,11 @@ body {
 .title {
   text-align: center;
 }
+
+.button_text {
+  font-size: 24px;
+}
+
 .container {
   max-width: 800px;
   height: 320px;

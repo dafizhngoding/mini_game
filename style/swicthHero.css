@@ -3,7 +3,7 @@ body {
   background-image: url("/assets/Backgrounds/Bridge/forest\ bridge.png");
   background-size: cover;
   background-repeat: no-repeat;
-  color: white;
+  color: #0f1923;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,23 +14,22 @@ body {
 
 .hero-container {
   display: flex;
-  width: 80%;
   max-width: 900px;
-  background: rgba(255, 255, 255, 0.6);
+  background: #0f1923;
   padding: 20px;
   border-radius: 10px;
 }
 
 .hero-list {
   width: 30%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
 }
 
 .hero-option {
   padding: 10px;
-  background: rgba(000, 000, 000, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   border: none;
   color: white;
   font-size: 32px;
@@ -50,9 +49,7 @@ body {
 }
 
 .hero-display {
-  width: 70%;
   text-align: center;
-  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,4 +76,23 @@ body {
   font-size: 2rem;
   font-weight: bold;
   top: 0.5rem;
+}
+
+.flex {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 24px;
+}
+.hero-option:hover {
+  transition: all 0.2s ease-in-out;
+  background: #ff4655;
+  transform: scale(1.03);
+}
+
+.locked {
+  cursor: not-allowed; /* Mencegah interaksi */
+  opacity: 0.5; /* Membuat transparan */
+  filter: grayscale(80%); /* Menambahkan efek hitam-putih */
 }

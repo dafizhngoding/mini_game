@@ -9,8 +9,8 @@
   </head>
   <body>
     <audio autoplay loop>
-        <source src="/assets/Backsounds/Energizing.mp3">
-      </audio>
+      <source src="/assets/Backsounds/Energizing.mp3" />
+    </audio>
     <div class="back-container">
       <a href="/src/pages/mainMenu.html">
         <button class="button btn-switchHero">
@@ -18,49 +18,53 @@
             <span class="button_sl"></span>
             <span class="button_text btn-txt-switchHero">Main Menu</span>
           </span>
-        </button> 
+        </button>
       </a>
     </div>
-    <div class="hero-container">
-      <div class="hero-list">
-        <button class="hero-option" onclick="selectHero(0)">
+    <div class="flex">
+      <div class="hero-container">
+        <div class="hero-list">
+          <button class="hero-option" onclick="selectHero(0)">
+            <img
+              src="/assets/Main Character/Hero 1/Bernafas.gif"
+              alt="Hero 1"
+              class="hero-icon-large"
+            />
+            <span>Steve</span>
+          </button>
+          <button class="hero-option locked" onclick="selectHero(1)">
+            <img
+              src="/assets/Main Character/Hero 2/Bernafas.gif"
+              alt="Hero 2"
+              class="hero-icon-large"
+            />
+            <span>Jett</span>
+          </button>
+          <button class="hero-option locked" onclick="selectHero(2)">
+            <img
+              src="/assets/Main Character/Hero 3/Bernafas.gif"
+              alt="Hero 3"
+              class="hero-icon-large"
+            />
+            <span>Sova</span>
+          </button>
+        </div>
+      </div>
+      <div class="hero-container">
+        <div class="hero-display">
           <img
+            id="hero-image"
             src="/assets/Main Character/Hero 1/Bernafas.gif"
             alt="Hero 1"
-            class="hero-icon-large"
           />
-          <span>Steve</span>
-        </button>
-        <button class="hero-option" onclick="selectHero(1)">
-          <img
-            src="/assets/Main Character/Hero 2/Bernafas.gif"
-            alt="Hero 2"
-            class="hero-icon-large"
-          />
-          <span>Jett</span>
-        </button>
-        <button class="hero-option" onclick="selectHero(2)">
-          <img
-            src="/assets/Main Character/Hero 3/Bernafas.gif"
-            alt="Hero 3"
-            class="hero-icon-large"
-          />
-          <span>Sova</span>
-        </button>
-      </div>
-      <div class="hero-display">
-        <img
-          id="hero-image"
-          src="/assets/Main Character/Hero 1/Bernafas.gif"
-          alt="Hero 1"
-        />
-        <h2 id="hero-name">Hero 1</h2>
-        <button class="button btn-switchHero" onclick="confirmSelection()">
-          <span class="button_lg btn-lg-switchHero">
-            <span class="button_sl"></span>
-            <span class="button_text btn-txt-switchHero">Select</span>
-          </span>
-        </button>
+          <h2 id="hero-name">Hero 1</h2>
+          <button class="button btn-switchHero" onclick="confirmSelection()">
+            <span class="button_lg btn-lg-switchHero">
+              <span class="button_sl"></span>
+              <span class="button_text btn-txt-switchHero">Select</span>
+            </span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -85,6 +89,18 @@
 
       // Inisialisasi tampilan pertama
       selectHero(0);
+      function selectHero(index) {
+        const heroButton =
+          document.getElementsByClassName("hero-option")[index];
+        if (heroButton.classList.contains("locked")) {
+          alert("Hero ini terkunci!");
+          return;
+        }
+
+        selectedHero = index;
+        document.getElementById("hero-image").src = heroes[index].img;
+        document.getElementById("hero-name").innerText = heroes[index].name;
+      }
     </script>
   </body>
 </html>
