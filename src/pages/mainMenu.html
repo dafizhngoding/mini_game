@@ -41,7 +41,7 @@
               </button>
             </a>
             <a href="">
-              <button class="button btn-main-menu">
+              <button class="button btn-main-menu" onclick="quit()">
                 <span class="button_lg btn-lg-main-menu">
                   <span class="button_sl"></span>
                   <span class="button_text btn-txt-main-menu">quit game</span>
@@ -67,5 +67,10 @@
         </a>
       </section>
     </main>
+    <script>
+      function quit() {
+        window.closed();
+      }
+    </script>
   </body>
 </html>
