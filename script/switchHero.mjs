@@ -1,31 +1,30 @@
-const heroes = [
-  { name: "Steve", img: "/assets/Main Character/Hero 1/Bernafas.gif" },
-  { name: "Jett", img: "/assets/Main Character/Hero 2/Bernafas.gif" },
-  { name: "Sova", img: "/assets/Main Character/Hero 3/Bernafas.gif" },
-];
+document.addEventListener("DOMContentLoaded", () => {
+  const heroButtons = document.querySelectorAll(".hero-option");
+  const errorSound = document.querySelector(
+    "audio source[src='/assets/Sounds/button-error.wav']"
+  ).parentElement;
 
-let selectedHero = 0;
+  heroButtons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+      if (button.classList.contains("locked")) {
+        console.log("Hero is locked!");
 
-function selectHero(index) {
-  selectedHero = index;
-  document.getElementById("hero-image").src = heroes[index].img;
-  document.getElementById("hero-name").innerText = heroes[index].name;
-}
+        // Pastikan suara error dimainkan
+        errorSound.currentTime = 0; // Restart audio dari awal
+        errorSound
+          .play()
+          .catch((error) => console.log("Gagal memutar audio:", error));
+      } else {
+        selectHero(index);
+      }
+    });
+  });
+});
 
-function confirmSelection() {
-  console.log(`Kamu memilih ${heroes[selectedHero].name}!`);
-}
-
-// Inisialisasi tampilan pertama
-selectHero(0);
-function selectHero(index) {
-  const heroButton = document.getElementsByClassName("hero-option")[index];
-  if (heroButton.classList.contains("locked")) {
-    console.log("Hero is locked!");
-    return;
-  }
-
-  selectedHero = index;
-  document.getElementById("hero-image").src = heroes[index].img;
-  document.getElementById("hero-name").innerText = heroes[index].name;
+function playErrorSound() {
+  const errorSound = document.getElementById("error-sound");
+  errorSound.currentTime = 0; // Reset audio agar bisa dimainkan berulang kali
+  errorSound
+    .play()
+    .catch((error) => console.error("Gagal memutar suara:", error));
 }

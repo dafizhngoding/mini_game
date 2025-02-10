@@ -6,29 +6,32 @@
     <link rel="stylesheet" href="/style/mainMenu.css" />
     <link rel="stylesheet" href="/style/globals.css" />
     <link rel="stylesheet" href="/style/icon/css/all.min.css" />
-    <title>Document</title>
+    <title>Main Menu</title>
   </head>
 
   <body id="mainMenu">
     <audio autoplay loop>
-      <source src="/assets/Backsounds/Energizing.mp3">
+      <source src="/assets/Backsounds/Energizing.mp3" type="audio/mp3" />
     </audio>
+    
+    <!-- Audio untuk tombol klik -->
+    <audio id="click-sound">
+      <source src="/assets/Sounds/button-click.wav" type="audio/wav" />
+    </audio>
+
     <main class="container container-main-menu">
-      <!-- <div class="setting_sector">
-            <i class="fa-solid fa-cog"></i>
-        </div> -->
       <section class="area_section">
         <div class="area-action-and-title">
           <section class="title_section">
-            <h1 class="title">echo heroes</h1>
-            <h1 class="title">save the world</h1>
+            <h1 class="title">Echo Heroes</h1>
+            <h1 class="title">Save The World</h1>
           </section>
           <div class="action_section">
             <a href="/src/pages/level.html">
-            <button class="button btn-main-menu">
+              <button class="button btn-main-menu">
                 <span class="button_lg btn-lg-main-menu">
                   <span class="button_sl"></span>
-                  <span class="button_text btn-txt-main-menu">play Now</span>
+                  <span class="button_text btn-txt-main-menu">Play Now</span>
                 </span>
               </button>
             </a>
@@ -36,25 +39,21 @@
               <button class="button btn-main-menu">
                 <span class="button_lg btn-lg-main-menu">
                   <span class="button_sl"></span>
-                  <span class="button_text btn-txt-main-menu">achievement</span>
+                  <span class="button_text btn-txt-main-menu">Achievement</span>
                 </span>
               </button>
             </a>
-              <button class="button btn-main-menu" id="quit">
-                <span class="button_lg btn-lg-main-menu">
-                  <span class="button_sl"></span>
-                  <span class="button_text btn-txt-main-menu">quit game</span>
-                </span>
-              </button>
+            <button class="button btn-main-menu" id="quit">
+              <span class="button_lg btn-lg-main-menu">
+                <span class="button_sl"></span>
+                <span class="button_text btn-txt-main-menu">Quit Game</span>
+              </span>
+            </button>
           </div>
         </div>
       </section>
       <section class="character-area">
-        <img
-          src="/assets/Main Character/Hero 1/Bernafas.gif"
-          alt=""
-          class="main-char"
-        />
+        <img src="/assets/Main Character/Hero 1/Bernafas.gif" alt="Main Character" class="main-char" />
         <a href="/src/pages/swicthHero.html" class="btn-chars">
           <button class="button btn-switchHero">
             <span class="button_lg btn-lg-switchHero">
@@ -65,6 +64,7 @@
         </a>
       </section>
     </main>
+
     <script src="/script/mainMenu.mjs" type="module"></script>
   </body>
 </html>

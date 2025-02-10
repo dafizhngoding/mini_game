@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const nextChapterBtn = document.getElementById("next-chapter-btn");
   const nextChapterPopup = document.getElementById("popup");
   const closePopupBtn = document.getElementById("close-btn");
+
   let selectedLevel = null;
 
   function showPopup(popup) {
