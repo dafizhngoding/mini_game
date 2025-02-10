@@ -1,10 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Fira+Code:wght@300..700&family=Staatliches&display=swap');
 
+@font-face {
+    font-family: 'Jungle Adventurer';
+    src: url('../assets/fonts/jungle_adventurer/JungleAdventurer.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Belanosima", sans-serif;
+    font-family: 'Jungle Adventurer', sans-serif;
 }
 
 body {
