@@ -1,23 +1,30 @@
 import { Item } from "../script/class/items.mjs"
 const x = window.innerWidth;
+const y = window.innerHeight - 168;
 
 export let dataItemsLVL1 = [
-    new Item(250,600, 50,50, 1, "trash", "item add score" , "/assets/Items/1.png"),
-    new Item(346,324, 50,50, 2, "trash", "item add score" , "/assets/Items/2.png"),
-    new Item(453,234, 50,50, 3, "trash", "item add score", "/assets/Items/3.png" ),
-    new Item(345,480, 50,50, 4, "trash", "item add score", "/assets/Items/4.png" ),
-    new Item(100,600, 50,50, 5, "trash", "item add score", "/assets/Items/5.png" ),
-    new Item(450,560, 50,50, 6, "trash", "item add score", "/assets/Items/6.png" ),
-    new Item(900,400, 50,50, 7, "trash", "item add score", "/assets/Items/6.png" ),
-    new Item(780,240, 50,50, 8, "trash", "item add score", "/assets/Items/10.png" ),
-    new Item(200,450, 50,50, 9, "trash", "item add score", "/assets/Items/7.png" ),
-    new Item(17,290, 50,50, 10, "trash", "item add score", "/assets/Items/5.png" ),
-    new Item(x -145,300, 50,50, 11, "trash", "item add score", "/assets/Items/12.png" ),
-    new Item(x -86,560, 50,50, 12, "trash", "item add score", "/assets/Items/13.png" ),
-    new Item(x-44,460, 50,50, 13, "trash", "item add score", "/assets/Items/14.png" ),
-    new Item(x -79,270, 50,50, 14, "trash", "item add score", "/assets/Items/3.png" ),
-    new Item(x -100,640, 50,50, 15, "trash", "item add score", "/assets/Items/2.png" ),
-    new Item(x -400,520, 50,50, 16, "trash", "item add score", "/assets/Items/6.png" ),
+    new Item(250,600 > y ? y  + 100 : 600, 50,50, 1, "trash", "item add score" , "/assets/Items/1.png"),
+    new Item(346,324 > y ? y + 100 : 324, 50,50, 2, "trash", "item add score" , "/assets/Items/2.png"),
+    new Item(453,234 > y ? y + 100 : 234, 50,50, 3, "trash", "item add score", "/assets/Items/3.png" ),
+    new Item(345,480 > y ? y + 100 : 480, 50,50, 4, "trash", "item add score", "/assets/Items/4.png" ),
+    new Item(100,600 > y ? y + 100 : 600, 50,50, 5, "trash", "item add score", "/assets/Items/5.png" ),
+    new Item(450,560 > y ? y + 100 : 560, 50,50, 6, "trash", "item add score", "/assets/Items/6.png" ),
+    new Item(900,400 > y ? y + 100 : 400, 50,50, 7, "trash", "item add score", "/assets/Items/6.png" ),
+    new Item(780,240 > y ? y + 100 : 240, 50,50, 8, "trash", "item add score", "/assets/Items/10.png" ),
+    new Item(200,450 > y ? y + 100 : 450, 50,50, 9, "trash", "item add score", "/assets/Items/7.png" ),
+    new Item(17,290 > y ? y + 100 : 290, 50,50, 10, "trash", "item add score", "/assets/Items/5.png" ),
+    new Item(x -300,300 > y ? y + 100 : 300, 50,50, 11, "trash", "item add score", "/assets/Items/12.png" ),
+    new Item(x -540,530 > y ? y + 100 : 530, 50,50, 12, "trash", "item add score", "/assets/Items/13.png" ),
+    new Item(x-300,460 > y ? y + 100 : 460, 50,50, 13, "trash", "item add score", "/assets/Items/14.png" ),
+    new Item(x -79,270 > y ? y + 100 : 270, 50,50, 14, "trash", "item add score", "/assets/Items/3.png" ),
+    new Item(x -800,346 > y ? y + 100 : 346, 50,50, 15, "trash", "item add score", "/assets/Items/2.png" ),
+    new Item(x -980,654 > y ? y + 100 : 654, 50,50, 16, "trash", "item add score", "/assets/Items/11.png" ),
+    new Item(x -480,267 > y ? y + 100 : 267, 50,50, 17, "trash", "item add score", "/assets/Items/12.png" ),
+    new Item(x -1000,189 > y ? y + 100 : 189, 50,50, 18, "trash", "item add score", "/assets/Items/7.png" ),
+    new Item(x -1200,321 > y ? y + 100 : 321, 50,50, 19, "trash", "item add score", "/assets/Items/8.png" ),
+    new Item(x -790,478 > y ? y + 100 : 478, 50,50, 20, "trash", "item add score", "/assets/Items/1.png" ),
+    new Item(x -856,540 > y ? y + 100 : 540, 50,50, 21, "trash", "item add score", "/assets/Items/3.png" ),
+    new Item(x -999,498 > y ? y + 100 : 498, 50,50, 22, "trash", "item add score", "/assets/Items/8.png" ),
 ]
 
 
