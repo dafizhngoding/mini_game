@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   enterLevelBtn.addEventListener("click", function () {
-    window.location.href = "/src/pages/levels/level_" + selectedLevel + ".html";
+    window.location.href = "/src/pages/dialogue/dialogue" + selectedLevel + ".html";
     hidePopup(levelPopup);
   });
 
