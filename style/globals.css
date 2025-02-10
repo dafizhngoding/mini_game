@@ -128,7 +128,7 @@ body {
     bottom: -1px;
     left: -8px;
     width: 0;
-    background-color: #ff4655;
+    background-color: rgba(76, 175, 80, 0.9);
     transform: skew(-15deg);
     transition: all .2s ease;
 }

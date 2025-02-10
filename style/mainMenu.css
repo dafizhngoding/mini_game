@@ -98,14 +98,22 @@
   font-weight: bold;
   top: 0.5rem;
 }
-
-.btn-char {
-  width: 20rem;
+.btn-switchHero {
+  width: 24rem;
 }
-.btn-lg-char {
+.btn-lg-switchHero {
   height: 3rem;
 }
-.btn-txt-char {
-  font-size: 1.5rem;
+.btn-txt-switchHero {
+  font-size: 1rem;
   font-weight: bold;
+}
+
+.button_text {
+  position: relative;
+  top: 15px;
+}
+.button_text1 {
+  position: relative;
+  top: 8px;
 }
