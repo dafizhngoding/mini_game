@@ -87,7 +87,7 @@ body {
 }
 .hero-option:hover {
   transition: all 0.2s ease-in-out;
-  background: #ff4655;
+  background: rgba(76, 175, 80, 0.9);
   transform: scale(1.03);
 }
 
@@ -95,4 +95,9 @@ body {
   cursor: not-allowed; /* Mencegah interaksi */
   opacity: 0.5; /* Membuat transparan */
   filter: grayscale(80%); /* Menambahkan efek hitam-putih */
+}
+
+.button_text {
+  position: relative;
+  top: 15px;
 }

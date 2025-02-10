@@ -1,71 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Dialog</title>
-  <link rel="stylesheet" href="/style/dialogue.css">
-  <link rel="stylesheet" href="/style/globals.css">
-</head>
-<body>
-  <img src="/assets/Main Character/Hero 1/Bernafas.gif" alt="Character" class="character-img" id="character-img">
-  <div class="dialog-container">
-    <div class="dialog-box" id="dialog-text">...
-      This place is a mess… If I don’t start cleaning, who will?
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Dialog</title>
+    <link rel="stylesheet" href="/style/dialogue.css" />
+    <link rel="stylesheet" href="/style/globals.css" />
+  </head>
+  <body>
+    <img
+      src="/assets/Main Character/Hero 1/Bernafas.gif"
+      alt="Character"
+      class="character-img"
+      id="character-img"
+    />
+    <div class="dialog-container">
+      <div class="dialog-box" id="dialog-text">
+        ... This place is a mess… If I don’t start cleaning, who will?
+      </div>
+      <div class="dialog-buttons">
+        <button class="btn" id="prev-btn" style="display: none">Prev</button>
+        <button class="btn" id="next-btn">Next</button>
+      </div>
     </div>
-    <div class="dialog-buttons">
-      <button class="btn" id="prev-btn" style="display: none;">Prev</button>
-      <button class="btn" id="next-btn">Next</button>
-    </div>
-  </div>
-  <script>
-    const dialogs = [
-      { text: "This place used to be full of life… Now it’s just another victim of pollution.", speaker: "hero" },
-      { text: "RAAAAH!! Clean… bad! Filth… good!", speaker: "ogre" },
-      { text: "Ogres are more aggressive and move faster! Time your attacks and dodge their strikes!", speaker: "tutorial" },
-    ];
-    
-    let currentDialog = 0;
-    const dialogText = document.getElementById("dialog-text");
-    const prevBtn = document.getElementById("prev-btn");
-    const nextBtn = document.getElementById("next-btn");
-    const characterImg = document.getElementById("character-img");
-
-    function updateDialog() {
-      const current = dialogs[currentDialog];
-      dialogText.innerText = current.text;
-
-      // Hide Prev button if on first dialog
-      prevBtn.style.display = currentDialog === 0 ? "none" : "inline-block";
-
-      // Change Next button to Play if on last dialog
-      nextBtn.innerText = currentDialog === dialogs.length - 1 ? "Play" : "Next";
-
-      // Update image based on the speaker
-      if (current.speaker === "hero") {
-        characterImg.src = "/assets/Main Character/Hero 1/Bernafas.gif";
-      } else if (current.speaker === "ogre") {
-        characterImg.src = "/assets/Mobs/Ogre/Bernafas.gif"; // Update with Goblin image path
-      } else if (current.speaker === "tutorial") {
-        characterImg.src = "/assets/Icons/Heroic.png"; // Update with tutorial icon
-      }
-    }
-
-    prevBtn.addEventListener("click", () => {
-      if (currentDialog > 0) {
-        currentDialog--;
-        updateDialog();
-      }
-    });
-
-    nextBtn.addEventListener("click", () => {
-      if (currentDialog < dialogs.length - 1) {
-        currentDialog++;
-        updateDialog();
-      }
-    });
-
-    updateDialog();
-  </script>
-</body>
+    <script src="/script/dialogue/dialogue3.mjs" type="module"></script>
+  </body>
 </html>
