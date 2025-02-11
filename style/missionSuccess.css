@@ -24,10 +24,10 @@ body {
   }
 
   .popup {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(255, 255, 255, 0.6);
     color: white;
     padding: 24px;
-    border-radius: 10px;
+    border-radius: 24px 0 24px 0;
     text-align: center;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     width: 400px;
@@ -62,9 +62,14 @@ body {
   }
 
   .buttons {
+    margin-top: 24px;
     display: flex;
     justify-content: space-between;
     gap: 24px;
+  }
+
+  .score-text {
+    font-size: 24px;
   }
 
   .btn {
@@ -82,14 +87,6 @@ body {
 
   .btn:hover {
     opacity: 0.8;
-  }
-
-  .next {
-    background: #4caf50;
-  }
-
-  .back {
-    background: #f44336;
   }
 
   .button_lg {

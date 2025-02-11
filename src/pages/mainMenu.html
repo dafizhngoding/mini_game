@@ -13,8 +13,7 @@
     <audio autoplay loop>
       <source src="/assets/Backsounds/Energizing.mp3" type="audio/mp3" />
     </audio>
-    
-    <!-- Audio untuk tombol klik -->
+
     <audio id="click-sound">
       <source src="/assets/Sounds/button-click.wav" type="audio/wav" />
     </audio>
@@ -28,7 +27,7 @@
           </section>
           <div class="action_section">
             <a href="/src/pages/level.html">
-              <button class="button btn-main-menu">
+              <button class="button btn-main-menu" onclick="playClickSound()">
                 <span class="button_lg btn-lg-main-menu">
                   <span class="button_sl"></span>
                   <span class="button_text btn-txt-main-menu">Play Now</span>
@@ -36,14 +35,14 @@
               </button>
             </a>
             <a href="/src/pages/achievement.html">
-              <button class="button btn-main-menu">
+              <button class="button btn-main-menu" onclick="playClickSound()">
                 <span class="button_lg btn-lg-main-menu">
                   <span class="button_sl"></span>
                   <span class="button_text btn-txt-main-menu">Achievement</span>
                 </span>
               </button>
             </a>
-            <button class="button btn-main-menu" id="quit">
+            <button class="button btn-main-menu" id="quit" onclick="playClickSound()">
               <span class="button_lg btn-lg-main-menu">
                 <span class="button_sl"></span>
                 <span class="button_text btn-txt-main-menu">Quit Game</span>
@@ -64,7 +63,7 @@
         </a>
       </section>
     </main>
-
+    <script src="/script/buttonEvent.mjs" type="module"></script>
     <script src="/script/mainMenu.mjs" type="module"></script>
   </body>
 </html>
