@@ -170,7 +170,10 @@ if (level === "level_2") {
         });
         // console.log(mob?.objB?.id);
 
+        
+        // Render player
         const attack = currentLevel.Mobs.slice(handleStageReturn.firstMobs, handleStageReturn.MobsAmount).filter((mob, index) => mob.id !== filter.at(index)).map(mob => mob.followPlayer(currentLevel.player, currentLevel.Mobs));
+        console.log(attack.at(0)?.attack);
         if (attack.at(0)?.attack === true) {
             let currentTime = Date.now();
             if (currentTime - lastAttackTime > attackCooldown) {
@@ -180,21 +183,19 @@ if (level === "level_2") {
                 if (currentHp > 0) {
                     hp.style.width = Math.max(0, currentHp - 50) + 'px';
                 } else if (currentHp <= 0) {
-                    currentLevel.Player.dead()
+                    currentLevel.player.dead()
                     setTimeout(() => {
                         window.location.href = "/src/pages/gameOver.html"
-                    }, 500)
+                    }, 1000)
                 }
 
                 lastAttackTime = currentTime;
             }
         }
-
-        // Render player
         currentLevel.player.draw(ctx, canvas);
         currentLevel.player.setCollision(currentLevel.player, ctx);
         currentLevel.player.move(input, undefined, undefined, currentLevel.name, undefined);
-
+        
         // Serang mobs yang masih hidup
         currentLevel.player.attackMobs(input, mob?.objB, level);
 
