@@ -2,7 +2,6 @@ import {
     dataItemsLVL1,
     removeItems
 } from "../../data/level_1.mjs";
-import { removeMobs } from "../levels/level_2.mjs";
 import {
     collision
 } from "./collision.mjs";
@@ -15,9 +14,13 @@ export class Player {
         this.height = height;
         this.name = name;
         this.speed = speed;
-        this.image = image;
-        this.zIndex = 2;
+this.imageSrc = image;
+this.zIndex = 2;
+        this.facingLeft = false;
+
+
     }
+
 
     setCollision(player, ctx) {
         const coll = new collision(player.x + 50, player.y + 40, player.width - 100, player.height - 70)
@@ -27,37 +30,56 @@ export class Player {
     move(input, boundaries = [], image, level, mobs) {
         let newX = this.x;
         let newY = this.y;
-        console.log('newX', newX);
-        console.log('newY', newY);
 
-        console.log(window.innerHeight - 124);
-
-
+        console.log(newY);
+        console.log(window.innerHeight);
+        console.log(window.innerWidth);
+        console.log(newX);
         switch (level) {
             case "level_1":
-                if (newY > window.innerHeight - 168) {
-                    newY = window.innerHeight - 168
+                if (newY > window.innerHeight - 166) {
+                    newY = window.innerHeight -166
                 } else if (newY < window.innerHeight - 668) {
                     newY = window.innerHeight - 668
                 }
+                console.log("ok");
 
                 if (newX < -50) {
                     newX = -50
+                } else if (newX > window.innerWidth - 146)  {
+                    newX = window.innerWidth - 146
                 }
-                case "level_2":
-                    if (newY > window.innerHeight - 278) {
-                        newY = window.innerHeight - 278
-                    } else if (newY < window.innerHeight - 654) {
-                        newY = window.innerHeight - 654
-                    }
-                    if (newX > window.innerWidth - 124) {
+                break;
+            case "level_2":
+                if (newY > window.innerHeight - 278) {
+                    newY = window.innerHeight - 278
+                } else if (newY < window.innerHeight - 654) {
+                    newY = window.innerHeight - 654
+                }
+                if (newX > window.innerWidth - 124) {
 
-                    }
+                }
         }
-        if (input.keys.w) newY -= this.speed;
-        if (input.keys.s) newY += this.speed;
-        if (input.keys.a) newX -= this.speed;
-        if (input.keys.d) newX += this.speed;
+        if (input.keys.w) {
+            this.imageSrc = "/assets/Main Character/Hero 1/Berlari.gif";
+            newY -= this.speed
+    };
+        if (input.keys.s) {
+            this.imageSrc = "/assets/Main Character/Hero 1/Berlari.gif";
+            newY += this.speed
+        }
+        ;
+        if (input.keys.a) {
+            this.imageSrc = "/assets/Main Character/Hero 1/Berlari.gif"
+            this.facingLeft = true;
+            newX -= this.speed
+        };
+        if (input.keys.d) {
+                        this.imageSrc = "/assets/Main Character/Hero 1/Berlari.gif"
+
+            this.facingLeft = false;
+            newX += this.speed
+        };
 
 
 
@@ -95,6 +117,16 @@ export class Player {
 
             if (!isDuplicate) {
                 collectionSession.push(item.items);
+                let score = JSON.parse(sessionStorage.getItem("score")) || 0
+                if (!score) {
+                    
+                    sessionStorage.setItem("score", JSON.stringify(100))
+                    document.getElementById("score").innerText = `${score || 0}`
+                } else {
+                    sessionStorage.setItem("score", JSON.stringify(score + 100));
+                                        document.getElementById("score").innerText = `${score + 100 || 0}`
+
+                }
                 removeItems(item.items?.id);
                 // console.log(removeItems(item.items?.id));
             } else {}
@@ -109,25 +141,34 @@ export class Player {
             sessionStorage.setItem("collectionPlayer", JSON.stringify(collectionSession));
         }
     }
-    attackMobs(input, mob) {
+    attackMobs(input, mob, level) {
         if (input.keys.e) {
             this.image = "/assets/Main Character/Hero 1/Menebas.gif";
-            console.log(mob);
             // Cek apakah mobs ada di jarak serang
             let dx = mob?.x - this.x;
             let dy = mob?.y - this.y;
             let distance = Math.sqrt(dx * dx + dy * dy);
 
-            if (distance < 80) { // Jarak serang 80px
-                mob.takeDamage(); // Kurangi HP mobs sebesar 50%
-                console.log(`${mob?.name} terkena serangan! HP: ${mob.hp}/${mob.maxHp}`);
-               
-                console.log(mob?.id);
+            if (mob?.name === "ogre") {
+                if (distance < 180) { // Jarak serang 80px
+                    mob.takeDamage(level); // Kurangi HP mobs sebesar 50%
+
+                } else {
+                }
+            } else if (mob?.name === "ogre") {
+                 if (distance < 120) { // Jarak serang 80px
+                     mob.takeDamage(level); // Kurangi HP mobs sebesar 50%
+
+                 } else {
+                 }
             } else {
-                console.log(`${mob?.id} terlindungi!`);
+                if (distance < 80) { // Jarak serang 80px
+                    mob.takeDamage(level); // Kurangi HP mobs sebesar 50%
+                   
+                } else {
+                }
             }
         } else {
-            console.log("Player berjalan!");
             this.image = "/assets/Main Character/Hero 1/Berlari.gif"; // Animasi default saat tidak menyerang
         }
     }
@@ -139,9 +180,16 @@ export class Player {
     }
 
 
-    draw(ctx, canvas) {
+    draw(ctx) {
         const playerImage = new Image();
-        playerImage.src = this.image;
+        playerImage.src = this.imageSrc;
+    ctx.save()
+    if (this.facingLeft === true) {
+        ctx.scale(-1, 1); // Balik horizontal
+        ctx.drawImage(playerImage, -this.x - this.width, this.y, this.width, this.height); // Gambar GIF di canvas
+    } else {
         ctx.drawImage(playerImage, this.x, this.y, this.width, this.height); // Gambar GIF di canvas
     }
+    ctx.restore(); // Kembalikan state canvas setelah flip
+}
 }

@@ -1,12 +1,11 @@
-import {
-    removeMobs
-} from "../levels/level_2.mjs";
+import { removeMobsLvl } from "../helper/removeHandler.mjs";
+import { removeMobs } from "../levels/level_2.mjs";
 import {
     collision
 } from "./collision.mjs";
 
 export class Mob {
-    constructor(x, y, width, height, type, image, name, id) {
+    constructor(x, y, width, height, type, image, name, id, hp = 100, maxHp = 100, speed = 2) {
         this.x = x;
         this.id = id
         this.y = y;
@@ -15,10 +14,10 @@ export class Mob {
         this.type = type,
             this.name = name
         this.image = image;
-        this.maxHp = 100; // HP maksimal
-        this.hp = 100; // HP saat ini
+        this.maxHp = maxHp; // HP maksimal
+        this.hp = hp; // HP saat ini
         this.isAlive = true
-        this.speed = 2;
+        this.speed = speed;
         this.facingLeft = false;
         this.state = "moving";
         this.attackCooldown = false;
@@ -65,22 +64,34 @@ export class Mob {
         ctx.strokeRect(barX, barY, barWidth, barHeight);
     }
 
-    followPlayer(player, mobs) {
+    followPlayer(player) {
         let dx = player.x - this.x;
         let dy = player.y - this.y;
-        console.log(dx, dy);
+
 
         let distance = Math.sqrt(dx * dx + dy * dy); // Hitung jarak mobs ke player
-        console.log(distance);
         this.facingLeft = dx < 0;
-
-        const attackRange = this.width - 120; // Jarak untuk mulai menyerang
-        const chaseRange = attackRange + 100; // 🔥 Cegah mobs agar tidak bertumpuk ke player
+        let attackRange; // Jarak untuk mulai menyerang
+        if (this.name === "ogre") {
+    attackRange = this.width - 270
+        } else if (this.name === "orc") {
+            attackRange = this.width - 270
+        } else {
+            attackRange = this.width - 120
+}
+        const chaseRange =  attackRange + 100; // 🔥 Cegah mobs agar tidak bertumpuk ke player
         if (distance <= attackRange) {
             if (this.state !== "attacking") {
                 this.state = "attacking";
-                this.image = "/assets/Mobs/Goblin/Menebas.gif";
-                console.log("Mobs langsung menyerang!");
+                if (this.name === "ogre") {
+                    this.image = "/assets/Mobs/Ogre/Menebas.gif"
+                } else if (this.name === "orc") {
+                                        this.image = "/assets/Mobs/Orc/Menebas.gif"
+
+                } else {
+
+                    this.image = "/assets/Mobs/Goblin/Menebas.gif";
+                }
 
                 // 🔥 Tambahkan cooldown biar serangan tidak terlalu cepat bertubi-tubi
                 if (!this.attackCooldown) {
@@ -98,11 +109,18 @@ export class Mob {
             // 🔥 Mobs terus mengejar player dengan agresif
             if (this.state !== "moving") {
                 this.state = "moving";
-                this.image = "/assets/Mobs/Goblin/Berlari.gif";
-                console.log("Mobs mengejar player!");
+                if (this.name === "ogre") {
+                    this.image = "/assets/Mobs/Ogre/Berlari.gif"
+                } else if (this.name === "orc") {
+                    this.image = "/assets/Mobs/Orc/Berlari.gif"
+
+                } else {
+
+                    this.image = "/assets/Mobs/Goblin/Berlari.gif";
+                }
             }
 
-            this.speed = 1; // Bisa sedikit lebih cepat saat mengejar
+            this.speed = 2; // Bisa sedikit lebih cepat saat mengejar
             this.x += (dx / distance) * this.speed;
             this.y += (dy / distance) * this.speed;
 
@@ -114,82 +132,57 @@ export class Mob {
             // 🔥 Kembali ke idle jika player menjauh terlalu jauh
             if (this.state !== "idle") {
                 this.state = "idle";
-                this.image = "/assets/Mobs/Goblin/bernafas.gif"; // Pastikan ada gambar idle
-                console.log("Mobs kembali ke posisi idle");
+     if (this.name === "ogre") {
+         this.image = "/assets/Mobs/Ogre/Bernafas.gif"
+     } else if (this.name === "orc") {
+         this.image = "/assets/Mobs/Orc/Bernafas.gif"
+
+     } else {
+
+         this.image = "/assets/Mobs/Goblin/Bernafas.gif";
+     }
             }
             return {
                 attack: false
             };
         }
-        // 🔥 Cegah mobs bertumpuk dengan mobs lain
-        //    for (let mob of mobs) {
-        //        if (mob !== this) {
-        //            let dxM = mob.x - this.x;
-        //            let dyM = mob.y - this.y;
-        //            let distanceM = Math.sqrt(dxM * dxM + dyM * dyM);
-
-        //            if (distanceM < this.width) {
-        //                let angle = Math.atan2(dyM, dxM);
-        //                this.x -= Math.cos(angle) * 0.3;
-        //                this.y -= Math.sin(angle) * 0.3;
-        //            }
-        //        }
-        //    }
 
     }
-    takeDamage() {
-        // if (this.isAlive) {
-        //     // Kurangi HP sebesar 50%
-        //     this.hp -= this;
+takeDamage(level) {
+    this.hp -= 5;
+    if (this.hp <= 0) {
+        this.hp = 0;
+        this.isAlive = false;
 
-        //     // Pastikan HP tidak negatif
-        //     if (this.hp <= 0) this.hp = 0;
+        // Simpan mobs yang sudah mati ke sessionStorage
+        const key = level === "level_2" ? "defeatedMobsLevel2" : "defeatedMobsLevel3";
+        const stageKey = level === "level_2" ? "defeatedMobsLevel2Stage" : "defeatedMobsLevel3Stage";
+console.log(stageKey);
+        let mobs = JSON.parse(sessionStorage.getItem(key)) || [];
+        let mobStage = JSON.parse(sessionStorage.getItem(stageKey)) || [];
 
-        //     // Cek apakah mobs sudah mati
-        //     if (this.hp === 0) {
-        //         this.isAlive = false;
-        //         this.image = "/assets/Mobs/Goblin/Mati.gif"; // Ganti gambar mobs mati (sesuaikan dengan filemu)
-        //         console.log(`${this.name} telah dikalahkan!`);
-        //         this.removeFromLevel();
-        //     } else {
-        //         console.log(`${this.name} terkena serangan! HP tersisa: ${this.hp}/${this.maxHp}`);
-        //     }
-        // }
+        mobs.push({
+            id: this.id,
+            name: this.name
+        });
+        mobStage.push({
+            id: this.id,
+            name: this.name
+        });
 
+        // Hilangkan duplikat berdasarkan ID
+        let uniqueMobs = [...new Map(mobs.map(m => [m.id, m])).values()];
+        let uniqueMobsStage = [...new Map(mobStage.map(m => [m.id, m])).values()];
 
-        this.hp -= 5
-        if (this.hp <= 0) {
-            this.hp = 0
-        }
-        if (this.hp === 0) {
-            this.isAlive = false;
-            console.log("hp mobs habis");
-            const mobs = JSON.parse(sessionStorage.getItem("defeatedMobsLevel2")) || [];
-            const mobStage = JSON.parse(sessionStorage.getItem("defeatedMobsLevel2Stage")) || [];
-            mobs.push({id:this.id, name:this.name});
-            mobStage.push({id:this.id, name:this.name});
-            let uniqueMobs = [...new Map(mobs.map(m => [m.id, m])).values()]
-            let uniqueMobsStage = [...new Map(mobStage.map(m => [m.id, m])).values()]
-            sessionStorage.setItem("defeatedMobsLevel2", JSON.stringify(uniqueMobs));
-            sessionStorage.setItem("defeatedMobsLevel2Stage", JSON.stringify(uniqueMobsStage));
-            removeMobs(this?.id)
-        }
-        console.log("hp", this.hp);
+        // Simpan kembali ke sessionStorage
+        sessionStorage.setItem(key, JSON.stringify(uniqueMobs));
+        sessionStorage.setItem(stageKey, JSON.stringify(uniqueMobsStage));
+
+        // Hapus mobs dari level yang sesuai
+        removeMobs(this.id,)
     }
-    // removeFromLevel() {
-    //     // Ambil data mobs yang sudah mati dari sessionStorage
-    //     const defeatedMobs = JSON.parse(sessionStorage.getItem("defeatedMobsLevel2")) || [];
 
-    //     // Tambahkan mobs yang sudah mati ke sessionStorage
-    //     defeatedMobs.push(this.id);
-    //     sessionStorage.setItem("defeatedMobsLevel2", JSON.stringify(defeatedMobs));
-
-    //     // Hapus mobs dari currentLevel.Mobs
-    //     const levelMobs = currentLevel.Mobs;
-    //     const index = levelMobs.findIndex(mob => mob.id === this.id);
-    //     if (index !== -1) {
-    //         levelMobs.splice(index, 1); // Hapus mobs dari array
-    //     }
-    // }
+    console.log(`HP ${this.name}: ${this.hp}/${this.maxHp}`);
+}
 
 }

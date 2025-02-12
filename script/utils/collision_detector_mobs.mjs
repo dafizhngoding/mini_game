@@ -10,7 +10,6 @@ export function detectCollisionsMobs(objects, threshold = 60) {
             // console.log(distance);
 
             if (distance < threshold) {
-                console.log(`objA ${objA.name} objB ${objB.name}`);
                 return { objA, objB };
             }
         }
