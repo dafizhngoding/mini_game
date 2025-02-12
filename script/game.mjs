@@ -241,7 +241,8 @@ if (level === "level_3") {
            m.followPlayer(currentLevel.Player);
        });
 
-                const attack = currentLevel.mobs.slice(0,1).filter((mob, index) => mob.id !== MobsID.at(index)).map(mob => mob.followPlayer(currentLevel.Player, currentLevel.Mobs));
+        const attack = MobsAlive.slice(0,1).filter((mob, index) => mob.id !== MobsID.at(index)).map(mob => mob.followPlayer(currentLevel.Player, currentLevel.Mobs));
+        console.log(attack.at(0)?.attack);
                 if (attack.at(0)?.attack === true) {
                     let currentTime = Date.now();
                     if (currentTime - lastAttackTime > attackCooldown) {
@@ -261,7 +262,7 @@ if (level === "level_3") {
                     }
                 }
 
-        currentLevel.Player.draw(ctx, mobDetected.objA, mobDetected.objB);
+        currentLevel.Player.draw(ctx, mobDetected?.objA, mobDetected?.objB);
         currentLevel.Player.setCollision(currentLevel.Player, ctx);
         currentLevel.Player.move(input, undefined, undefined, currentLevel.name, undefined);
         currentLevel.Player.attackMobs(input, mobDetected?.objB, level);

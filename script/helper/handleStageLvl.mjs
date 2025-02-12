@@ -414,6 +414,9 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                         }, 2000);
                     }, 500);
                 }
+
+                firstAmount = 1;
+                MobsAmount = 2;
             }
 
             if (document.getElementById("stage").innerText === "3/4") {
@@ -439,6 +442,8 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                         }, 2000);
                     }, 500);
                 }
+                firstAmount = 2;
+                MobsAmount = 4;
             }
 
             if (document.getElementById("stage").innerText === "4/4") {
