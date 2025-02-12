@@ -30,9 +30,18 @@
 
 
 .loading-bar-fill {
-    width: 80%;
+    width: 0%;
     height: 100%;
     border-radius: 10px;
     background-color: rgba(76, 175, 80, 0.9);
     transition: width 0.5s ease;
+}
+
+.loading-text {
+    display:flex;
+    justify-content: space-between;
+}
+
+.loading-text > #loading-text {
+    font-size: 20px;
 }

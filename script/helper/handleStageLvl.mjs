@@ -436,6 +436,7 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
             }
 
             if (document.getElementById("stage").innerText === "4/4") {
+                sessionStorage.setItem("levelCompleted", false);
                 if (defeatedMobsLvl3 !== null) {
                     document.getElementById("mobs").innerText = `${defeatedMobsLvl3.length}/3`
                 }

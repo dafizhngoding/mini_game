@@ -1,3 +1,4 @@
+// window.location.href = "/src/loadingScreen.html"
 // Ambil semua tombol di dalam main menu
 const buttons = document.querySelectorAll(".btn-main-menu, .btn-switchHero");
 
