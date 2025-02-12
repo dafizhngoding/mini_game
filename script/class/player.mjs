@@ -17,7 +17,7 @@ export class Player {
         this.imageSrc = image;
         this.zIndex = 2;
         this.facingLeft = false;
-        this.isDead = false; // 🔥 Tambahkan state mati
+        this.isDead = false; 
         this.gravity = 0;
 
 
@@ -25,10 +25,10 @@ export class Player {
     dead(respawn = false) {
         if (!this.isDead) {
             this.isDead = true;
-            this.imageSrc = "/assets/Main Character/Hero 1/Mati.gif"; // Animasi mati
+            this.imageSrc = "/assets/Main Character/Hero 1/dead.png"; // Animasi mati
         }
 
-        const fallSpeed = 20; // 🔥 Jatuh lebih cepat
+        const fallSpeed = 2; // 🔥 Jatuh lebih cepat
         const fallInterval = setInterval(() => {
             this.y += fallSpeed; // 🔥 Langsung jatuh ke bawah cepat
 
@@ -40,12 +40,12 @@ export class Player {
                     this.imageSrc = "/assets/Main Character/Hero 1/Bernafas.gif"; // 🔥 Kembali ke idle
                 }
             }
-        }, 50);
+        }, 1);
 
         // 🔥 Hapus dalam 1 detik
         setTimeout(() => {
             clearInterval(fallInterval);
-        }, 1000);
+        }, 2500);
     }
 
 
@@ -60,8 +60,7 @@ export class Player {
 
         console.log(newY);
         console.log(window.innerHeight);
-        console.log(window.innerWidth);
-        console.log(newX);
+
         switch (level) {
             case "level_1":
                 if (newY > window.innerHeight - 166) {
@@ -69,8 +68,6 @@ export class Player {
                 } else if (newY < window.innerHeight - 668) {
                     newY = window.innerHeight - 668
                 }
-                console.log("ok");
-
                 if (newX < -50) {
                     newX = -50
                 } else if (newX > window.innerWidth - 146) {
@@ -86,25 +83,61 @@ export class Player {
                 if (newX > window.innerWidth - 124) {
 
                 }
+                break;
+            case "level_3":
+                console.log("ok");
+                if (newY > window.innerHeight - 166) {
+                    newY = window.innerHeight - 166
+                } else if (newY < window.innerHeight - 812) {
+                    newY = window.innerHeight - 812
+                }
+
+                if (newX < -50) {
+                    newX = -50
+                } else if (newX > window.innerWidth - 146) {
+                    newX = window.innerWidth - 146
+                }
+                break;
+
+
+        
         }
         if (input.keys.w) {
-            this.imageSrc = "/assets/Main Character/Hero 1/Berlari.gif";
-            newY -= this.speed
+            if (this.isDead === true) {
+                this.imageSrc = "/assets/Main Character/Hero 1/dead.png"
+            } else {
+                this.imageSrc = "/assets/Main Character/Hero 1/Berlari.gif";
+                newY -= this.speed
+            }
         };
         if (input.keys.s) {
-            this.imageSrc = "/assets/Main Character/Hero 1/Berlari.gif";
-            newY += this.speed
+            if (this.isDead === true) {
+                this.imageSrc = "/assets/Main Character/Hero 1/dead.png"
+            } else {
+                this.imageSrc = "/assets/Main Character/Hero 1/Berlari.gif";
+                newY += this.speed
+            }
+                
         };
         if (input.keys.a) {
-            this.imageSrc = "/assets/Main Character/Hero 1/Berlari.gif"
-            this.facingLeft = true;
-            newX -= this.speed
+            if (this.isDead === true) {
+                this.imageSrc = "/assets/Main Character/Hero 1/dead.png"
+            } else {
+                this.imageSrc = "/assets/Main Character/Hero 1/Berlari.gif";
+                this.facingLeft = true;
+                newX -= this.speed
+            }
         };
         if (input.keys.d) {
-            this.imageSrc = "/assets/Main Character/Hero 1/Berlari.gif"
-
-            this.facingLeft = false;
-            newX += this.speed
+            if (this.isDead === true) {
+                this.imageSrc = "/assets/Main Character/Hero 1/dead.png"
+            }
+            else {
+                this.imageSrc = "/assets/Main Character/Hero 1/Berlari.gif";
+    
+                this.facingLeft = false;
+                newX += this.speed
+             }
         };
 
 
@@ -122,12 +155,10 @@ export class Player {
         let dataItems;
 
 
-        // Cek apakah item terdeteksi
         if (!item || !item.items) {
             return;
         }
 
-        // Tentukan dataItems berdasarkan level
         switch (level) {
             case "level_1":
                 dataItems = dataItemsLVL1;
@@ -135,10 +166,8 @@ export class Player {
             default:
                 return;
         }
-        // Proses pengumpulan item jika tombol 'f' ditekan
         if (input.keys.f) {
             let collectionSession = JSON.parse(sessionStorage.getItem("collectionPlayer")) || [];
-            // Cek apakah item sudah ada di sessionStorage
             const isDuplicate = collectionSession.some(itm => itm?.id === item.items?.id);
 
             if (!isDuplicate) {
@@ -153,46 +182,41 @@ export class Player {
                     document.getElementById("score").innerText = `${score + 100 || 0}`
 
                 }
-                removeItems(item.items?.id);
-                // console.log(removeItems(item.items?.id));
+                removeItems(item.items?.id);                // console.log(removeItems(item.items?.id));
             } else {}
 
-            // Filter ulang untuk pastikan tidak ada item null
             collectionSession = collectionSession.filter(itm => itm !== null && itm !== undefined);
 
-            // Hapus duplikat berdasarkan ID
             collectionSession = [...new Map(collectionSession.map(itm => [itm?.id, itm])).values()];
 
-            // Simpan koleksi ke sessionStorage
             sessionStorage.setItem("collectionPlayer", JSON.stringify(collectionSession));
         }
     }
     attackMobs(input, mob, level) {
         if (input.keys.e) {
             this.image = "/assets/Main Character/Hero 1/Menebas.gif";
-            // Cek apakah mobs ada di jarak serang
             let dx = mob?.x - this.x;
             let dy = mob?.y - this.y;
             let distance = Math.sqrt(dx * dx + dy * dy);
 
             if (mob?.name === "ogre") {
-                if (distance < 180) { // Jarak serang 80px
-                    mob.takeDamage(level); // Kurangi HP mobs sebesar 50%
+                if (distance < 180) { 
+                    mob.takeDamage(level); 
 
                 } else {}
             } else if (mob?.name === "ogre") {
-                if (distance < 120) { // Jarak serang 80px
-                    mob.takeDamage(level); // Kurangi HP mobs sebesar 50%
+                if (distance < 120) { 
+                    mob.takeDamage(level); 
 
                 } else {}
             } else {
-                if (distance < 80) { // Jarak serang 80px
-                    mob.takeDamage(level); // Kurangi HP mobs sebesar 50%
+                if (distance < 80) { 
+                    mob.takeDamage(level); 
 
                 } else {}
             }
         } else {
-            this.image = "/assets/Main Character/Hero 1/Berlari.gif"; // Animasi default saat tidak menyerang
+            this.image = "/assets/Main Character/Hero 1/Berlari.gif";
         }
     }
 
@@ -217,7 +241,6 @@ export class Player {
                 ctx.fillStyle = "#0f1923";
                 ctx.fillRect(this.x + this.width / 2.5, this.y, 36, 36);
 
-                // Teks "F" di tengah kotak
                 ctx.fillStyle = "white";
                 ctx.font = "bold 20px Arial";
                 ctx.textAlign = "center";
@@ -225,16 +248,14 @@ export class Player {
                 ctx.fillText("E", (this.x + this.width / 2.5) + 36 / 2, this.y + 38 / 2);
             }
 
-            ctx.scale(-1, 1); // Balik horizontal
+            ctx.scale(-1, 1); 
             ctx.drawImage(playerImage, -this.x - this.width, this.y, this.width, this.height);
-            // Gambar GIF di canvas
         } else {
             ctx.drawImage(playerImage, this.x, this.y, this.width, this.height); // Gambar GIF di canvas
             if (player.name === "player") {
                 ctx.fillStyle = "#0f1923";
                 ctx.fillRect(this.x + this.width / 2.5, this.y, 36, 36);
 
-                // Teks "F" di tengah kotak
                 ctx.fillStyle = "white";
                 ctx.font = "bold 20px Arial";
                 ctx.textAlign = "center";
@@ -244,6 +265,6 @@ export class Player {
             }
         }
 
-        ctx.restore(); // Kembalikan state canvas setelah flip
+        ctx.restore(); 
     }
 }

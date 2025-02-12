@@ -469,15 +469,15 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                             document.getElementById("mobs").innerText = `4/4`;
                         }, 2000);
                     }, 500);
-                    if (isFinish === true && document.getElementById("stage").innerText === "4/4") {
-                        firstMobs = 0;
-                        MobsAmount = 0;
-                        window.location.href = "/src/pages/missionSuccess.html"
-                    }
                 }
             }
-
-
+            
+            
+            if (isFinish === true && document.getElementById("stage").innerText === "4/4") {
+                firstMobs = 0;
+                MobsAmount = 0;
+                window.location.href = "/src/pages/missionSuccess.html"
+            }
             break;
         default:
             console.log("Level not found");

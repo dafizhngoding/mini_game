@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Retrieve current level and background from localStorage
   const currentLevel = localStorage.getItem("currentLevel") || 1;
-  const backgroundPath = `/assets/Backgrounds/Backgrounds/Forest/game_background_${currentLevel}.png`;
+  const backgroundPath = `/assets/Backgrounds/Forest/game_background_${currentLevel}.png`;
 
   levelText.textContent = currentLevel;
   container.style.backgroundImage = `url('${backgroundPath}')`;

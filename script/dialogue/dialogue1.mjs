@@ -1,7 +1,17 @@
 const dialogs = [
-  "This place is a mess… If I don’t start cleaning, who will?",
-  "Press F to pick up trash and clean the area.",
-  "What was that sound? … Maybe just the wind. I should keep going.",
+  {
+    text: "This place is a mess… If I don’t start cleaning, who will?",
+speaker: "hero"
+    ,
+  },
+  {
+    text: "Press F to pick up trash and clean the area.",
+speaker:  "tutorial"
+
+  }, {
+    text: "What was that sound? … Maybe just the wind. I should keep going.",
+speaker: "hero",
+  }
 ];
 let currentDialog = 0;
 const dialogText = document.getElementById("dialog-text");

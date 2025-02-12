@@ -180,7 +180,7 @@ if (level === "level_2") {
                 if (currentHp > 0) {
                     hp.style.width = Math.max(0, currentHp - 50) + 'px';
                 } else if (currentHp <= 0) {
-                    // currentLevel.Player.dead()
+                    currentLevel.Player.dead()
                     setTimeout(() => {
                         window.location.href = "/src/pages/gameOver.html"
                     }, 500)
@@ -255,7 +255,7 @@ if (level === "level_3") {
                             currentLevel.Player.dead()
                             setTimeout(() => {
                                 window.location.href = "/src/pages/gameOver.html"
-                            },500)
+                            }, 2500)
                         }
 
                         lastAttackTime = currentTime;
