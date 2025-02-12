@@ -179,7 +179,8 @@ if (level === "level_2") {
 
                 if (currentHp > 0) {
                     hp.style.width = Math.max(0, currentHp - 50) + 'px';
-                } else {
+                } else if(currentHp <= 0){
+                    window.location.href = "/src/pages/gameOver.html"
                 }
 
                 lastAttackTime = currentTime;
@@ -245,7 +246,8 @@ if (level === "level_3") {
 
                         if (currentHp > 0) {
                             hp.style.width = Math.max(0, currentHp - 50) + 'px';
-                        } else {
+                        } else if (currentHp <= 0) {
+                            window.location.href = "/src/pages/gameOver.html"
                         }
 
                         lastAttackTime = currentTime;

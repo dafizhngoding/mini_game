@@ -49,6 +49,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // Simpan skor bintang hanya jika lebih tinggi dari sebelumnya
   if (!starsData[currentLevel] || starsData[currentLevel] < starCount) {
     starsData[currentLevel] = starCount;
+    let achievementDataLocal = JSON.parse(localStorage.getItem("achievementData")) || {};
+    let achievementDataSession = JSON.parse(sessionStorage.getItem("achievementData")) || {};
+    if (!achievementDataLocal && !achievementDataSession) {
+      localStorage.setItem("achievementData", JSON.stringify({ [currentLevel]: starCount }));
+      sessionStorage.setItem("achievementData", JSON.stringify({ [currentLevel]: starCount }));
+    } else {
+      if (achievementDataSession) {
+        sessionStorage.setItem("achievementData", JSON.stringify({ ...achievementDataSession, [currentLevel]: starCount }));
+      } else {
+        sessionStorage.setItem("achievementData", JSON.stringify({ ...achievementDataLocal, [currentLevel]: starCount }));
+      }
+      localStorage.setItem("achievementData", JSON.stringify({ ...achievementDataLocal, [currentLevel]: starCount }));
+    }
     let starSession = JSON.parse(sessionStorage.getItem("starsData"));
     let starLocal = JSON.parse(localStorage.getItem("starsData"));
     if (!starSession && !starLocal) {

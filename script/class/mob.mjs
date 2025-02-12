@@ -1,5 +1,9 @@
-import { removeMobsLvl } from "../helper/removeHandler.mjs";
-import { removeMobs } from "../levels/level_2.mjs";
+import {
+    removeMobsLvl
+} from "../helper/removeHandler.mjs";
+import {
+    removeMobs
+} from "../levels/level_2.mjs";
 import {
     collision
 } from "./collision.mjs";
@@ -21,6 +25,8 @@ export class Mob {
         this.facingLeft = false;
         this.state = "moving";
         this.attackCooldown = false;
+        this.attackInterval = null;
+        this.firstAttack = true;
 
     }
 
@@ -73,39 +79,41 @@ export class Mob {
         this.facingLeft = dx < 0;
         let attackRange; // Jarak untuk mulai menyerang
         if (this.name === "ogre") {
-    attackRange = this.width - 270
+            attackRange = this.width - 270
         } else if (this.name === "orc") {
             attackRange = this.width - 270
         } else {
             attackRange = this.width - 120
-}
-        const chaseRange =  attackRange + 100; // 🔥 Cegah mobs agar tidak bertumpuk ke player
+        }
+        const chaseRange = attackRange + 100; // 🔥 Cegah mobs agar tidak bertumpuk ke player
         if (distance <= attackRange) {
             if (this.state !== "attacking") {
                 this.state = "attacking";
-                if (this.name === "ogre") {
-                    this.image = "/assets/Mobs/Ogre/Menebas.gif"
-                } else if (this.name === "orc") {
-                                        this.image = "/assets/Mobs/Orc/Menebas.gif"
 
-                } else {
-
-                    this.image = "/assets/Mobs/Goblin/Menebas.gif";
+                if (this.attackInterval) {
+                    clearInterval(this.attackInterval);
                 }
+              
 
-                // 🔥 Tambahkan cooldown biar serangan tidak terlalu cepat bertubi-tubi
-                if (!this.attackCooldown) {
-                    this.attackCooldown = true;
-                    setTimeout(() => {
-                        this.attackCooldown = false;
-                    }, 500); // Cooldown 0.5 detik antara serangan
-                }
+                // 🔥 Serangan pertama langsung terjadi tanpa delay
+                this.attack();
+                this.firstAttack = false; // Setelah serangan pertama, atur ke false
+
+                // 🔥 Loop serangan setiap 1 detik setelah serangan pertama
+                this.attackInterval = setInterval(() => {
+                    this.attack();
+                }, 2000);
             }
             return {
                 attack: !this.attackCooldown
             }; // Kembalikan status serangan sesuai cooldown
 
         } else if (distance <= chaseRange) {
+
+            if (this.attackInterval) {
+                clearInterval(this.attackInterval);
+                this.attackInterval = null;
+            }
             // 🔥 Mobs terus mengejar player dengan agresif
             if (this.state !== "moving") {
                 this.state = "moving";
@@ -132,15 +140,15 @@ export class Mob {
             // 🔥 Kembali ke idle jika player menjauh terlalu jauh
             if (this.state !== "idle") {
                 this.state = "idle";
-     if (this.name === "ogre") {
-         this.image = "/assets/Mobs/Ogre/Bernafas.gif"
-     } else if (this.name === "orc") {
-         this.image = "/assets/Mobs/Orc/Bernafas.gif"
+                if (this.name === "ogre") {
+                    this.image = "/assets/Mobs/Ogre/Bernafas.gif"
+                } else if (this.name === "orc") {
+                    this.image = "/assets/Mobs/Orc/Bernafas.gif"
 
-     } else {
+                } else {
 
-         this.image = "/assets/Mobs/Goblin/Bernafas.gif";
-     }
+                    this.image = "/assets/Mobs/Goblin/Bernafas.gif";
+                }
             }
             return {
                 attack: false
@@ -148,41 +156,63 @@ export class Mob {
         }
 
     }
-takeDamage(level) {
-    this.hp -= 5;
-    if (this.hp <= 0) {
-        this.hp = 0;
-        this.isAlive = false;
 
-        // Simpan mobs yang sudah mati ke sessionStorage
-        const key = level === "level_2" ? "defeatedMobsLevel2" : "defeatedMobsLevel3";
-        const stageKey = level === "level_2" ? "defeatedMobsLevel2Stage" : "defeatedMobsLevel3Stage";
-console.log(stageKey);
-        let mobs = JSON.parse(sessionStorage.getItem(key)) || [];
-        let mobStage = JSON.parse(sessionStorage.getItem(stageKey)) || [];
+    attack() {
+        if (!this.attackCooldown) {
+            this.setImage("Menebas");
+            this.attackCooldown = true;
 
-        mobs.push({
-            id: this.id,
-            name: this.name
-        });
-        mobStage.push({
-            id: this.id,
-            name: this.name
-        });
-
-        // Hilangkan duplikat berdasarkan ID
-        let uniqueMobs = [...new Map(mobs.map(m => [m.id, m])).values()];
-        let uniqueMobsStage = [...new Map(mobStage.map(m => [m.id, m])).values()];
-
-        // Simpan kembali ke sessionStorage
-        sessionStorage.setItem(key, JSON.stringify(uniqueMobs));
-        sessionStorage.setItem(stageKey, JSON.stringify(uniqueMobsStage));
-
-        // Hapus mobs dari level yang sesuai
-        removeMobs(this.id,)
+            setTimeout(() => {
+                this.setImage("Bernafas");
+                this.attackCooldown = false;
+            }, 1000); // 🔥 Bernafas setelah 500ms serangan
+        }
     }
 
-    console.log(`HP ${this.name}: ${this.hp}/${this.maxHp}`);
-}
+    setImage(action) {
+        if (this.name === "ogre") {
+            this.image = `/assets/Mobs/Ogre/${action}.gif`;
+        } else if (this.name === "orc") {
+            this.image = `/assets/Mobs/Orc/${action}.gif`;
+        } else {
+            this.image = `/assets/Mobs/Goblin/${action}.gif`;
+        }
+    }
+    takeDamage(level) {
+        this.hp -= 5;
+        if (this.hp <= 0) {
+            this.hp = 0;
+            this.isAlive = false;
+
+            // Simpan mobs yang sudah mati ke sessionStorage
+            const key = level === "level_2" ? "defeatedMobsLevel2" : "defeatedMobsLevel3";
+            const stageKey = level === "level_2" ? "defeatedMobsLevel2Stage" : "defeatedMobsLevel3Stage";
+            console.log(stageKey);
+            let mobs = JSON.parse(sessionStorage.getItem(key)) || [];
+            let mobStage = JSON.parse(sessionStorage.getItem(stageKey)) || [];
+
+            mobs.push({
+                id: this.id,
+                name: this.name
+            });
+            mobStage.push({
+                id: this.id,
+                name: this.name
+            });
+
+            // Hilangkan duplikat berdasarkan ID
+            let uniqueMobs = [...new Map(mobs.map(m => [m.id, m])).values()];
+            let uniqueMobsStage = [...new Map(mobStage.map(m => [m.id, m])).values()];
+
+            // Simpan kembali ke sessionStorage
+            sessionStorage.setItem(key, JSON.stringify(uniqueMobs));
+            sessionStorage.setItem(stageKey, JSON.stringify(uniqueMobsStage));
+
+            // Hapus mobs dari level yang sesuai
+            removeMobs(this.id, )
+        }
+
+        console.log(`HP ${this.name}: ${this.hp}/${this.maxHp}`);
+    }
 
 }
