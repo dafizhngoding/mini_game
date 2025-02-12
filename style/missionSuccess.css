@@ -30,7 +30,7 @@ body {
     border-radius: 24px 0 24px 0;
     text-align: center;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    width: 400px;
+    width: 500px;
     position: relative;
   }
 
@@ -115,4 +115,28 @@ body {
   .button_text {
     position: relative;
     z-index: 1;
+  }
+
+  #score-image.goblin {
+    width: 100px; /* Atur ukuran sesuai kebutuhan */
+    height: auto;
+  }
+  
+  #mob-image {
+    width: 100px; /* Atur ukuran sesuai kebutuhan */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .score-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .mob-count {
+    font-size: 18px;
+    color: white;
+    margin-top: 10px;
   }
