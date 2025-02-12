@@ -3,19 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style/mainMenu.css" />
-    <link rel="stylesheet" href="style/globals.css" />
-    <link rel="stylesheet" href="style/icon/css/all.min.css" />
+    <link rel="stylesheet" href="/style/mainMenu.css" />
+    <link rel="stylesheet" href="/style/globals.css" />
+    <link rel="stylesheet" href="/style/icon/css/all.min.css" />
     <title>Main Menu</title>
   </head>
 
   <body id="mainMenu">
     <audio autoplay loop>
-      <source src="assets/Backsounds/Energizing.mp3" type="audio/mp3" />
+      <source src="/assets/Backsounds/Energizing.mp3" type="audio/mp3" />
     </audio>
 
     <audio id="click-sound">
-      <source src="assets/Sounds/button-click.wav" type="audio/wav" />
+      <source src="/assets/Sounds/button-click.wav" type="audio/wav" />
     </audio>
 
     <main class="container container-main-menu">
@@ -26,7 +26,7 @@
             <h1 class="title">Save The World</h1>
           </section>
           <div class="action_section">
-            <a href="src/pages/level.html">
+            <a href="/src/pages/level.html">
               <button class="button btn-main-menu" onclick="playClickSound()">
                 <span class="button_lg btn-lg-main-menu">
                   <span class="button_sl"></span>
@@ -34,7 +34,7 @@
                 </span>
               </button>
             </a>
-            <a href="src/pages/achievement.html">
+            <a href="/src/pages/achievement.html">
               <button class="button btn-main-menu" onclick="playClickSound()">
                 <span class="button_lg btn-lg-main-menu">
                   <span class="button_sl"></span>
@@ -52,8 +52,8 @@
         </div>
       </section>
       <section class="character-area">
-        <img src="assets/Main Character/Hero 1/Bernafas.gif" alt="Main Character" class="main-char" />
-        <a href="src/pages/swicthHero.html" class="btn-chars">
+        <img src="/assets/Main Character/Hero 1/Bernafas.gif" alt="Main Character" class="main-char" />
+        <a href="/src/pages/swicthHero.html" class="btn-chars">
           <button class="button btn-switchHero">
             <span class="button_lg btn-lg-switchHero">
               <span class="button_sl"></span>
@@ -63,7 +63,7 @@
         </a>
       </section>
     </main>
-    <script src="script/buttonEvent.mjs" type="module"></script>
-    <script src="script/mainMenu.mjs" type="module"></script>
+    <script src="/script/buttonEvent.mjs" type="module"></script>
+    <script src="/script/mainMenu.mjs" type="module"></script>
   </body>
 </html>
