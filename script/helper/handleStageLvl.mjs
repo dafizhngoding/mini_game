@@ -196,7 +196,7 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
             if (isFinish === true && document.getElementById("stage").innerText === "4/4") {
                 firstAmount = 0;
                 ItemAmount = 0;
-                window.location.href = "/src/pages/mainMenu.html"
+                window.location.href = "/src/pages/missionSuccess.html"
             }
 
             break;
@@ -355,7 +355,7 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
             if (isFinish === true && document.getElementById("stage").innerText === "4/4") {
                 firstMobs = 0;
                 MobsAmount = 0;
-                window.location.href = "/src/pages/mainMenu.html"
+                window.location.href = "/src/pages/missionSuccess.html"
             }
 
             break;
@@ -463,7 +463,7 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
             if (isFinish === true && document.getElementById("stage").innerText === "4/4") {
                 firstMobs = 0;
                 MobsAmount = 0;
-                window.location.href = "/src/pages/mainMenu.html"
+                window.location.href = "/src/pages/missionSuccess.html"
             }
 
 

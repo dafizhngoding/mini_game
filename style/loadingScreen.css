@@ -1,0 +1,38 @@
+.loading-screen {
+    color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.loading-screen h1 {
+    font-size: 4rem;
+    width: 450px;
+    text-align: center;
+}
+
+.loading-screen img {
+    width: 300px;
+}
+
+.loading-bar {
+    width: 700px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+
+.loading-bar-fill {
+    width: 80%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: rgba(76, 175, 80, 0.9);
+    transition: width 0.5s ease;
+}

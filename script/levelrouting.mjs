@@ -19,6 +19,23 @@ document.addEventListener("DOMContentLoaded", function () {
     popup.classList.remove("show");
   }
 
+  let starsData = JSON.parse(localStorage.getItem("starsData")) || {};
+  let levelButtons = document.querySelectorAll(".level-button");
+
+  levelButtons.forEach((button, index) => {
+    let level = index + 1;
+    let starContainer = button.querySelector(".stars-display");
+    starContainer.innerHTML = "";
+    let starCount = starsData[level] || 0;
+
+    for (let i = 0; i < starCount; i++) {
+      let starImg = document.createElement("img");
+      starImg.src = "/assets/items/star 1.png";
+      starImg.alt = "Star";
+      starContainer.appendChild(starImg);
+    }
+  });
+
   levels.forEach((level) => {
     level.addEventListener("click", function () {
       if (!this.classList.contains("locked")) {
@@ -30,7 +47,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   enterLevelBtn.addEventListener("click", function () {
-    window.location.href = "/src/pages/dialogue/dialogue" + selectedLevel + ".html";
+    window.location.href =
+      "/src/pages/dialogue/dialogue" + selectedLevel + ".html";
+      let currentLevel = parseInt(sessionStorage.setItem("currentLevel", selectedLevel));
     hidePopup(levelPopup);
   });
 
@@ -51,11 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   window.addEventListener("click", function (event) {
-    if (event.target === levelPopup) {
-      hidePopup(levelPopup);
-    }
-    if (event.target === nextChapterPopup) {
-      hidePopup(nextChapterPopup);
-    }
+    if (event.target === levelPopup) hidePopup(levelPopup);
+    if (event.target === nextChapterPopup) hidePopup(nextChapterPopup);
   });
 });

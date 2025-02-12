@@ -56,6 +56,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column-reverse;
   font-size: 18px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -206,4 +207,16 @@ body {
   display: flex;
   align-items: center;
   gap: 16px;
+}
+
+.stars-display {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.star-icon {
+  width: 20px;
+  height: 20px;
+  margin: 2px;
 }
