@@ -179,6 +179,11 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                             resetSessionStorage();
                         }, 2000);
                     }, 500);
+                    if (isFinish === true && document.getElementById("stage").innerText === "4/4") {
+                        firstAmount = 0;
+                        ItemAmount = 0;
+                        window.location.href = "/src/pages/missionSuccess.html"
+                    }
                 }
 
 
@@ -193,11 +198,7 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                 }
             }
 
-            if (isFinish === true && document.getElementById("stage").innerText === "4/4") {
-                firstAmount = 0;
-                ItemAmount = 0;
-                window.location.href = "/src/pages/missionSuccess.html"
-            }
+            
 
             break;
 
@@ -338,6 +339,11 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                             document.getElementById("mobs").innerText = `0/3`;
                         }, 2000);
                     }, 500);
+                     if (isFinish === true && document.getElementById("stage").innerText === "4/4") {
+                         firstMobs = 0;
+                         MobsAmount = 0;
+                         window.location.href = "/src/pages/missionSuccess.html"
+                     }
                 }
 
 
@@ -352,11 +358,7 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                 }
             }
 
-            if (isFinish === true && document.getElementById("stage").innerText === "4/4") {
-                firstMobs = 0;
-                MobsAmount = 0;
-                window.location.href = "/src/pages/missionSuccess.html"
-            }
+           
 
             break;
         case "level_3":
@@ -367,6 +369,8 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                     document.getElementById("mobs").innerText = `${defeatedMobsLvl3.length}/1`
                 }
                 if (document.getElementById("mobs").innerText === "1/1") {
+                
+
                     document.getElementById("stage").innerText = "2/4";
                     let stageText = document.getElementById("stageText");
                     document.getElementById("state_stage").innerText = `2`;
@@ -391,7 +395,8 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                     document.getElementById("mobs").innerText = `${defeatedMobsLvl3.length}/2`
                 }
 
-                if (document.getElementById("mobs").innerText === "2/2") {
+                if (document.getElementById("mobs").innerText === "2/2" && !stageDisplayed) {
+                    stageDisplayed = true;
                     document.getElementById("stage").innerText = "3/4";
                     let stageText = document.getElementById("stageText");
                     document.getElementById("state_stage").innerText = `3`;
@@ -415,7 +420,8 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                 if (defeatedMobsLvl3 !== null) {
                     document.getElementById("mobs").innerText = `${defeatedMobsLvl3.length}/3`
                 }
-                if (document.getElementById("mobs").innerText === "3/3") {
+                if (document.getElementById("mobs").innerText === "3/3" && !stageDisplayed) {
+                    stageDisplayed = true
                     document.getElementById("stage").innerText = "4/4";
                     let stageText = document.getElementById("stageText");
                     document.getElementById("state_stage").innerText = `4`;
@@ -436,11 +442,11 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
             }
 
             if (document.getElementById("stage").innerText === "4/4") {
-                sessionStorage.setItem("levelCompleted", false);
                 if (defeatedMobsLvl3 !== null) {
                     document.getElementById("mobs").innerText = `${defeatedMobsLvl3.length}/3`
                 }
-                if (document.getElementById("mobs").innerText === "3/3") {
+                if (document.getElementById("mobs").innerText === "3/3" && !stageDisplayed) {
+                    stageDisplayed = true;
                     document.getElementById("stage").innerText = "4/4";
                     let stageText = document.getElementById("stageText");
                     document.getElementById("state_stage").innerText = `Completed`;
@@ -454,17 +460,16 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                             stageText.classList.remove("show");
                             stageText.classList.add("hide");
                             sessionStorage.setItem("stageDisplayed", false);
-                            sessionStorage.setItem("levelCompleted", true);
+                            sessionStorage.setItem("levelCompleted", true); 
                             document.getElementById("mobs").innerText = `4/4`;
                         }, 2000);
                     }, 500);
+                    if (isFinish === true && document.getElementById("stage").innerText === "4/4") {
+                        firstMobs = 0;
+                        MobsAmount = 0;
+                        window.location.href = "/src/pages/missionSuccess.html"
+                    }
                 }
-
-            }
-            if (isFinish === true && document.getElementById("stage").innerText === "4/4") {
-                firstMobs = 0;
-                MobsAmount = 0;
-                window.location.href = "/src/pages/missionSuccess.html"
             }
 
 

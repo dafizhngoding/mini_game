@@ -179,8 +179,11 @@ if (level === "level_2") {
 
                 if (currentHp > 0) {
                     hp.style.width = Math.max(0, currentHp - 50) + 'px';
-                } else if(currentHp <= 0){
-                    window.location.href = "/src/pages/gameOver.html"
+                } else if (currentHp <= 0) {
+                    // currentLevel.Player.dead()
+                    setTimeout(() => {
+                        window.location.href = "/src/pages/gameOver.html"
+                    }, 500)
                 }
 
                 lastAttackTime = currentTime;
@@ -215,6 +218,7 @@ if (level === "level_3") {
 
         let allObjects = [currentLevel.Player, ...currentLevel.mobs];
         let mobDetected = detectCollisionsMobs(allObjects);
+        console.log(mobDetected);
 
         let stageReturn = handleStageLvl(level, coll);
         handleStageLvl(level, coll);
@@ -247,14 +251,17 @@ if (level === "level_3") {
                         if (currentHp > 0) {
                             hp.style.width = Math.max(0, currentHp - 50) + 'px';
                         } else if (currentHp <= 0) {
-                            window.location.href = "/src/pages/gameOver.html"
+                            currentLevel.Player.dead()
+                            setTimeout(() => {
+                                window.location.href = "/src/pages/gameOver.html"
+                            },500)
                         }
 
                         lastAttackTime = currentTime;
                     }
                 }
 
-        currentLevel.Player.draw(ctx);
+        currentLevel.Player.draw(ctx, mobDetected.objA, mobDetected.objB);
         currentLevel.Player.setCollision(currentLevel.Player, ctx);
         currentLevel.Player.move(input, undefined, undefined, currentLevel.name, undefined);
         currentLevel.Player.attackMobs(input, mobDetected?.objB, level);

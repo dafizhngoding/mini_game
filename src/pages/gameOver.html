@@ -4,99 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Game Over</title>
-    <style>
-      body {
-        background-color: #0f1923;
-        color: white;
-        height: 100vh;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: Arial, sans-serif;
-      }
-
-      .container {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        padding: 40px;
-        text-align: center;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        width: 350px;
-      }
-
-      .title {
-        font-size: 2.5rem;
-        margin-bottom: 10px;
-      }
-
-      .level-text {
-        font-size: 1.2rem;
-        font-weight: bold;
-        margin-bottom: 20px;
-      }
-
-      .game-box {
-        width: 200px;
-        height: 150px;
-        background: url("../assets/Backgrounds/Bridge/sky bridge.png") no-repeat center/cover;
-        border-radius: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 3rem;
-        margin: 0 auto 20px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-      }
-
-      .btn-container {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-      }
-
-      .restart, .play {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 1.5rem;
-        color: white;
-        border: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.2s;
-      }
-
-      .restart:hover, .play:hover {
-        transform: scale(1.1);
-      }
-
-      .restart {
-        background-color: #d9534f;
-      }
-      
-      .play {
-        background-color: #5cb85c;
-      }
-    </style>
+    <link rel="stylesheet" href="/style/gameOver.css" />
+    <link rel="stylesheet" href="/style/globals.css" />
   </head>
   <body>
-    <div class="container">
-      <h1 class="title">You Died</h1>
-      <p class="level-text">Level <span>1</span></p>
-      <div class="game-box">💀</div>
-      <div class="btn-container">
-        <a href="">
-          <button class="restart">&#x21bb;</button>
-        </a>
-        <a href="/src/pages/mainMenu.html">
-          <button class="play">&#x2302;</button>
-        </a>
+    <div class="container-game-over">
+      <h1 class="title">Game Over</h1>
+      <div class="game-over-box">
+        <p class="level-text">Level <span>1</span></p>
+        <div class="game-box">💀</div>
+        <div class="btn-container">
+          <a href="/src/pages/mainMenu.html">
+            <button class="button">
+              <span class="button_lg">
+                <span class="button_sl"></span>
+                <span class="button_text">Main Menu</span>
+              </span>
+            </button>
+          </a>
+          <button class="button" id="retry-btn">
+            <span class="button_lg">
+              <span class="button_sl"></span>
+              <span class="button_text">Try Again</span>
+            </span>
+          </button>
+        </div>
       </div>
     </div>
+    <script src="/script/gameOver.mjs" type="module"></script>
     <script src="/script/buttonEvent.mjs" type="module"></script>
   </body>
 </html>
