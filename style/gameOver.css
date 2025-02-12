@@ -1,81 +1,96 @@
-body {
-  background-color: #0f1923;
-  color: white;
-  max-height: 100vh;
-  max-width: 100wh;
-  overflow: hidden;
-  padding: 8rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@keyframes glitch {
+  0% {
+    text-shadow: 4px 4px #0f1923, -4px -4px gray;
+  }
+  25% {
+    text-shadow: -4px -4px #0f1923, 4px 4px gray;
+  }
+  50% {
+    text-shadow: 4px -4px #0f1923, -4px 4px gray;
+  }
+  75% {
+    text-shadow: -4px 4px #0f1923, 4px -4px gray;
+  }
+  100% {
+    text-shadow: 4px 4px #0f1923, -4px -4px gray;
+  }
 }
 
-.container {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 32px;
-  display: flex;
-  height: 100%;
-  width: 80%;
-  padding: 8rem 0;
-  align-items: center;
-  justify-content: center;
+.glitch {
+  animation: glitch 0.1s infinite alternate;
 }
+
+@keyframes shake {
+  0% {
+    transform: translateX(0px);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(10px);
+  }
+}
+
+.shake {
+  animation: shake 0.5s infinite;
+}
+
+.container-game-over {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-image: url("/assets/Backgrounds/Forest/game_background_1.png");
+}
+
 .title {
-  font-size: 3rem;
-}
-
-span {
-  color: lightgreen;
-}
-
-.game-container {
+  color: white;
+  background-color: #ff4655;
+  padding: 16px;
+  font-size: 4rem;
   text-align: center;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
+
 .level-text {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 2rem;
 }
+
 .game-box {
-  width: 250px;
-  height: 200px;
-  background-color: #5f7a3c;
-  background-image: url("../assets/Backgrounds/Bridge/sky\ bridge.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 20px;
-  margin: 20px auto;
-  display: flex;
-  font-size: 3rem;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  font-size: 12rem;
 }
+
 .btn-container {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  margin-top: 20px;
-}
-.restart, .play {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 24px;
-  color: white;
-  display: flex;
   align-items: center;
+  gap: 20px;
+}
+
+.game-over-box {
+  border-radius: 24px 0 24px 0;
+  padding: 4rem 8rem;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  align-items: center;
+  gap: 20px;
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
-a {
-  text-decoration: none;
-}
-
-.restart {
-  background-color: #d9534f;
-}
-.play {
-  background-color: #5cb85c;
+.button_text {
+  font-size: 1.5rem;
+  border-radius: 10px;
+  color: white;
 }
