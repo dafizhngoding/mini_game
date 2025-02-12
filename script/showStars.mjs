@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  let starsData = JSON.parse(sessionStorage.getItem("starsData")) || {};
+  let starsData = JSON.parse(sessionStorage.getItem("starsData")) || JSON.parse(localStorage.getItem("starsData")) || {};
   let levels = document.querySelectorAll(".level");
 
   levels.forEach((level, index) => {

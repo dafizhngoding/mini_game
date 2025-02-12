@@ -40,17 +40,36 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Simpan data bintang ke localStorage berdasarkan level yang dimainkan
-  const currentLevel = parseInt(localStorage.getItem("currentLevel")) || 1; // Level saat ini
-  let starsData = JSON.parse(localStorage.getItem("starsData")) || {}; // Ambil data bintang sebelumnya
+  const currentLevel =
+    parseInt(sessionStorage.getItem("currentLevel")) ||
+    parseInt(localStorage.getItem("currentLevel")) ||
+    1; // Level saat ini
+  let starsData = JSON.parse(sessionStorage.getItem("starsData")) || {}; // Ambil data bintang sebelumnya
 
   // Simpan skor bintang hanya jika lebih tinggi dari sebelumnya
   if (!starsData[currentLevel] || starsData[currentLevel] < starCount) {
     starsData[currentLevel] = starCount;
-    let star = sessionStorage.getItem("starsData");
-    if (!star) {
+    let starSession = JSON.parse(sessionStorage.getItem("starsData"));
+    let starLocal = JSON.parse(localStorage.getItem("starsData"));
+    if (!starSession && !starLocal) {
       sessionStorage.setItem("starsData", JSON.stringify(starsData));
+      localStorage.setItem("starsData", JSON.stringify(starsData));
     } else {
-      sessionStorage.setItem("starsData", JSON.stringify({...JSON.parse(star), currentLevel: starCount}));
+      if (starSession) {
+        sessionStorage.setItem(
+          "starsData",
+          JSON.stringify({ ...starSession, [currentLevel]: starCount })
+        );
+      } else {
+        sessionStorage.setItem(
+          "starsData",
+          JSON.stringify({ ...starLocal, [currentLevel]: starCount })
+        );
+      }
+      localStorage.setItem(
+        "starsData",
+        JSON.stringify({ ...starLocal, [currentLevel]: starCount })
+      );
     }
   }
 
@@ -104,7 +123,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // **Navigasi ke level berikutnya**
   nextLevelButton.addEventListener("click", () => {
     sessionStorage.setItem("currentLevel", currentLevel + 1);
-    window.location.href =
-      "/src/pages/dialogue/dialogue" + (currentLevel + 1) + ".html";
+    if (currentLevel >= 3) {
+      window.location.href = "/src/pages/mainMenu.html";
+      return;
+    } else {
+      window.location.href =
+        "/src/pages/dialogue/dialogue" + (currentLevel + 1) + ".html";
+    }
   });
 });

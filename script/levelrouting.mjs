@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.href =
       "/src/pages/dialogue/dialogue" + selectedLevel + ".html";
       let currentLevel = parseInt(sessionStorage.setItem("currentLevel", selectedLevel));
+      localStorage.setItem("currentLevel", selectedLevel);
     hidePopup(levelPopup);
   });
 
