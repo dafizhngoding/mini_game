@@ -411,7 +411,7 @@ document.addEventListener("DOMContentLoaded", () => {
   nextLevelButton.addEventListener("click", () => {
     sessionStorage.setItem("currentLevel", currentLevel + 1);
     if (currentLevel >= 3) {
-      window.location.href = "/src/pages/mainMenu.html";
+      window.location.href = "/src/pages/dialogue/dialogue4.html";
       return;
     } else {
       window.location.href =

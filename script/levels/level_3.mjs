@@ -23,8 +23,8 @@ export let dataMobsLevel3 = [
     new Mob(450, 670, 200, 200, "Mobs", "/assets/Mobs/Goblin/Bernafas.gif","goblin",  5, 500, 500, 5),
     new Mob(360, 520, 200, 200, "Mobs", "/assets/Mobs/Goblin/Bernafas.gif","goblin",  6, 500, 500, 5),
     new Mob(360, 520, 350, 350, "Mobs", "/assets/Mobs/Ogre/Bernafas.gif","ogre",  7, 550, 550, 5),
-    new Mob(360, 520, 350, 350, "Mobs", "/assets/Mobs/Ogre/Bernafas.gif","ogre",  8, 550, 550, 5),
-    new Mob(360, 520, 350, 350, "Mobs", "/assets/Mobs/Orc/Bernafas.gif","orc",  9, 550, 550, 5),
+    new Mob(960, 520, 350, 350, "Mobs", "/assets/Mobs/Ogre/Bernafas.gif","ogre",  8, 550, 550, 5),
+    new Mob(760, 520, 350, 350, "Mobs", "/assets/Mobs/Orc/Bernafas.gif","orc",  9, 550, 550, 5),
     
 ]
 
