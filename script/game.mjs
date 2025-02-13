@@ -176,6 +176,7 @@ if (level === "level_2") {
         const attack = currentLevel.Mobs.slice(handleStageReturn.firstMobs, handleStageReturn.MobsAmount).filter((mob, index) => mob.id !== filter.at(index)).map(mob => mob.followPlayer(currentLevel.player, currentLevel.Mobs));
         console.log(attack.at(0)?.attack);
         if (attack.at(0)?.attack === true) {
+            currentLevel.player.imageSrc = "/assets/Main Character/Hero 1/damaged (3).gif"
             let currentTime = Date.now();
             if (currentTime - lastAttackTime > attackCooldown) {
                 let hp = document.getElementById("hp");
@@ -184,16 +185,17 @@ if (level === "level_2") {
                 if (currentHp > 0) {
                     hp.style.width = Math.max(0, currentHp - 50) + 'px';
                 } else if (currentHp <= 0) {
+                    currentLevel.player.imageSrc = "/assets/Main Character/Hero 1/dead.png"
                     currentLevel.player.dead()
                     setTimeout(() => {
                         window.location.href = "/src/pages/gameOver.html"
                     }, 1000)
-                }
+                } 
 
                 lastAttackTime = currentTime;
             }
         }
-        currentLevel.player.draw(ctx, canvas);
+        currentLevel.player.draw(ctx, mob?.objA, mob?.objB);
         currentLevel.player.setCollision(currentLevel.player, ctx);
         currentLevel.player.move(input, undefined, undefined, currentLevel.name, undefined);
         
@@ -261,8 +263,8 @@ if (level === "level_3") {
             });
      
              const attack = MobsAlive.slice(0,1).filter((mob, index) => mob.id !== MobsID.at(index)).map(mob => mob.followPlayer(currentLevel.Player, currentLevel.Mobs));
-             console.log(attack.at(0)?.attack);
-                     if (attack.at(0)?.attack === true) {
+             if (attack.at(0)?.attack === true) {
+                         currentLevel.Player.imageSrc = "/assets/Main Character/Hero 1/damaged (3).gif"
                          let currentTime = Date.now();
                          if (currentTime - lastAttackTime > attackCooldown) {
                              let hp = document.getElementById("hp");
@@ -279,7 +281,7 @@ if (level === "level_3") {
      
                              lastAttackTime = currentTime;
                          }
-             }
+                     } 
         } else {
         }
 

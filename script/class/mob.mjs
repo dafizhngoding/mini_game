@@ -96,12 +96,12 @@ export class Mob {
               
 
                 // 🔥 Serangan pertama langsung terjadi tanpa delay
-                this.attack();
+                this.attack(player);
                 this.firstAttack = false; // Setelah serangan pertama, atur ke false
 
                 // 🔥 Loop serangan setiap 1 detik setelah serangan pertama
                 this.attackInterval = setInterval(() => {
-                    this.attack();
+                    this.attack(player);
                 }, 2000);
             }
             return {
@@ -157,7 +157,7 @@ export class Mob {
 
     }
 
-    attack() {
+    attack(player) {
         if (!this.attackCooldown) {
             this.setImage("Menebas");
             this.attackCooldown = true;

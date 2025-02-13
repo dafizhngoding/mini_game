@@ -36,7 +36,6 @@ export class Player {
             if (this.y > window.innerHeight) { // 🔥 Jika keluar layar
                 clearInterval(fallInterval);
                 if (respawn) {
-                    this.resetPosition(100, 100); // 🔥 Respawn ke posisi awal
                     this.isDead = false;
                     this.imageSrc = "/assets/Main Character/Hero 1/Bernafas.gif"; // 🔥 Kembali ke idle
                 }
