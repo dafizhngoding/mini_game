@@ -375,6 +375,8 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                 if (document.getElementById("mobs").innerText === "1/1" && document.getElementById("items").innerText === "2/2") {
                     document.getElementById("stage").innerText = "2/4";
                     let stageText = document.getElementById("stageText");
+                    localStorage.setItem("allItemCollected", JSON.stringify(coll));
+
                     document.getElementById("state_stage").innerText = `2`;
                     sessionStorage.removeItem("defeatedMobsLevel3Stage");
                     setTimeout(() => {
@@ -405,6 +407,8 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
 
                 if (document.getElementById("mobs").innerText === "2/2" && document.getElementById("items").innerText === "2/2" && !stageDisplayed) {
                     stageDisplayed = true;
+                    let data = JSON.parse(localStorage.getItem("allItemCollected"))
+                    localStorage.setItem("allItemCollected", JSON.stringify([...data, ...coll]))
                     document.getElementById("stage").innerText = "3/4";
                     let stageText = document.getElementById("stageText");
                     document.getElementById("state_stage").innerText = `3`;
@@ -440,6 +444,9 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                 }
                 if (document.getElementById("mobs").innerText === "3/3" && document.getElementById("items").innerText === "2/2" && !stageDisplayed) {
                     stageDisplayed = true
+                    let data = JSON.parse(localStorage.getItem("allItemCollected"))
+                    localStorage.setItem("allItemCollected", JSON.stringify([...data, ...coll]))
+
                     document.getElementById("stage").innerText = "4/4";
                     let stageText = document.getElementById("stageText");
                     document.getElementById("state_stage").innerText = `4`;
@@ -465,15 +472,17 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                 ItemAmount = 6;
                 targetStage = 3;
             }
-            
+
             if (document.getElementById("stage").innerText === "4/4") {
                 if (defeatedMobsLvl3 !== null || coll !== null) {
                     document.getElementById("items").innerText = `${coll.length}/2`
 
                     document.getElementById("mobs").innerText = `${ defeatedMobsLvl3 ? defeatedMobsLvl3?.length: 0}/3`
                 }
-                if (document.getElementById("mobs").innerText === "3/3" && document.getElementById("items").innerText === "2/2" && !stageDisplayed){ 
+                if (document.getElementById("mobs").innerText === "3/3" && document.getElementById("items").innerText === "2/2" && !stageDisplayed) {
                     stageDisplayed = true;
+                    let data = JSON.parse(localStorage.getItem("allItemCollected"))
+                    localStorage.setItem("allItemCollected", JSON.stringify([...data, ...coll]))
                     document.getElementById("stage").innerText = "4/4";
                     let storage = JSON.parse(sessionStorage.getItem("defeatedMobsLevel3"))
                     localStorage.setItem("allMobs", JSON.stringify(storage));
@@ -497,7 +506,7 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                             window.location.href = "/src/pages/missionSuccess.html"
 
                         }, 2000);
-                        }, 500);
+                    }, 500);
                     console.log("berhasil");
                 }
 

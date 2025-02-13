@@ -61,6 +61,7 @@ export class Player {
 
         console.log(newY);
         console.log(window.innerHeight);
+        
 
         switch (level) {
             case "level_1":
@@ -76,8 +77,8 @@ export class Player {
                 }
                 break;
             case "level_2":
-                if (newY > window.innerHeight - 278) {
-                    newY = window.innerHeight - 278
+                if (newY > window.innerHeight - 235) {
+                    newY = window.innerHeight - 235
                 } else if (newY < window.innerHeight - 654) {
                     newY = window.innerHeight - 654
                 }
@@ -198,7 +199,6 @@ export class Player {
             collectionSession = collectionSession.filter(itm => itm !== null && itm !== undefined);
 
             collectionSession = [...new Map(collectionSession.map(itm => [itm?.id, itm])).values()];
-console.log(collectionSession);
             sessionStorage.setItem("collectionPlayer", JSON.stringify(collectionSession));
         }
     }
