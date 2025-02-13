@@ -1,142 +1,188 @@
 body {
-    margin: 0;
-    color: white;
-    padding: 0;
-    display: flex;
-    gap: 2rem;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: url("/assets/Backgrounds/Bridge/forest\ bridge.png")
-      no-repeat center center/cover;
-    font-family: 'Arial', sans-serif;
-  }
+  margin: 0;
+  color: white;
+  padding: 0;
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url("/assets/Backgrounds/Bridge/forest\ bridge.png")
+    no-repeat center center/cover;
+  font-family: 'Arial', sans-serif;
+}
 
-  .title {
-    background-color: rgba(76, 175, 80, 0.9);
-    padding: 16px;
-    font-size: 32px;
-    text-align: center;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-  }
+.title {
+  background-color: rgba(76, 175, 80, 0.9);
+  padding: 16px;
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
 
-  .popup {
-    background: rgba(255, 255, 255, 0.6);
-    color: white;
-    padding: 24px;
-    border-radius: 24px 0 24px 0;
-    text-align: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    width: 500px;
-    position: relative;
-  }
+.popup {
+  background: rgba(255, 255, 255, 0.6);
+  color: white;
+  padding: 24px;
+  border-radius: 24px 0 24px 0;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  width: 500px;
+  position: relative;
+}
 
-  .stars {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin-bottom: 15px;
-  }
+.stars {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 15px;
+}
 
-  .stars img {
-    width: 100px;
-    transition: transform 0.3s ease;
-  }
+.stars img {
+  width: 100px;
+  transition: transform 0.3s ease;
+}
 
-  .stars img:hover {
-    transform: scale(1.2);
-  }
+.stars img:hover {
+  transform: scale(1.2);
+}
 
-  .score {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
-    font-size: 24px;
-    color: white;
-    font-weight: bold;
-    margin-bottom: 24px;
-  }
+.score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
 
-  .buttons {
-    margin-top: 24px;
-    display: flex;
-    justify-content: space-between;
-    gap: 24px;
-  }
+.buttons {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
 
-  .score-text {
-    font-size: 24px;
-  }
+.score-text {
+  font-size: 24px;
+}
 
-  .btn {
-    padding: 10px 20px;
-    font-size: 18px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: 0.2s;
-    flex: 1;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-  }
+.btn {
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.2s;
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+}
 
-  .btn:hover {
-    opacity: 0.8;
-  }
+.btn:hover {
+  opacity: 0.8;
+}
 
-  .button_lg {
-    display: block;
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-  }
+.button_lg {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
 
-  .button_sl {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    transition: left 0.3s ease;
-  }
+.button_sl {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.3s ease;
+}
 
-  .button:hover .button_sl {
-    left: 0;
-  }
+.button:hover .button_sl {
+  left: 0;
+}
 
-  .button_text {
-    position: relative;
-    z-index: 1;
-  }
+.button_text {
+  position: relative;
+  z-index: 1;
+}
 
-  #score-image.goblin {
-    width: 100px; /* Atur ukuran sesuai kebutuhan */
-    height: auto;
-  }
-  
-  #mob-image {
-    width: 100px; /* Atur ukuran sesuai kebutuhan */
-    height: auto;
-    display: block;
-    margin: 0 auto;
-  }
-  
-  .score-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .mob-count {
-    font-size: 18px;
-    color: white;
-    margin-top: 10px;
-  }
+#score-image.goblin {
+  width: 100px; /* Atur ukuran sesuai kebutuhan */
+  height: auto;
+}
+
+#mob-image {
+  width: 100px; /* Atur ukuran sesuai kebutuhan */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.score-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mob-count {
+  font-size: 18px;
+  color: white;
+  margin-top: 10px;
+}
+
+/* Achievement Container */
+
+.achievement-container ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.achievement-container h2 {
+  margin: 0 0 10px 0;
+}
+
+.achievement-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.achievement-container li {
+  margin: 5px 0;
+}
+
+.achievement-container img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.achievement-container li {
+  background: rgba(255, 255, 255, 0.8);
+  color: #333;
+  padding: 16px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  width: 50%;
+  margin-bottom: 20px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  text-align: center;
+  gap: 10px;
+}

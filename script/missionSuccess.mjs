@@ -6,10 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const scorePointsText = document.querySelector(".score-text span");
   const nextLevelButton = document.getElementById("next-level-btn");
   const scoreImage = document.getElementById("score-image");
+  const achievementContainer = document.getElementById("achievement-container");
+  const achievementList = document.getElementById("achievement-list");
 
   // Ambil data sampah dari localStorage
-  let collectedTrash =
-    JSON.parse(localStorage.getItem("allItemCollected")) || [];
+  let collectedTrash = JSON.parse(localStorage.getItem("allItemCollected")) || [];
   let trashCount = collectedTrash.length; // Hitung jumlah sampah yang dikumpulkan
 
   // Ambil data mob dari localStorage
@@ -17,10 +18,39 @@ document.addEventListener("DOMContentLoaded", () => {
   let mobCount = collectedMobs.length; // Hitung jumlah mob yang dikumpulkan
 
   // Simpan data bintang ke localStorage berdasarkan level yang dimainkan
-  const currentLevel =
-    parseInt(sessionStorage.getItem("currentLevel")) ||
-    parseInt(localStorage.getItem("currentLevel")) ||
-    1; // Level saat ini
+  const currentLevel = parseInt(sessionStorage.getItem("currentLevel")) ||
+    parseInt(localStorage.getItem("currentLevel")) || 1; // Level saat ini
+
+  // Fungsi untuk menambahkan pencapaian ke dalam container
+  function addAchievement(achievement, imgSrc) {
+    const li = document.createElement("li");
+    const img = document.createElement("img");
+    img.src = imgSrc;
+    img.alt = achievement;
+    img.classList.add("achievement-img");
+    li.appendChild(img);
+    li.appendChild(document.createTextNode(achievement));
+    achievementList.appendChild(li);
+  }
+
+  // Tambahkan pencapaian berdasarkan level yang dimainkan
+  if (currentLevel === 1) {
+    addAchievement("Trash Cleaner", "/assets/Icons/Sampah.png");
+  } else if (currentLevel === 2) {
+    addAchievement("Pembasmi Monster", "/assets/Icons/Sword.png");
+    addAchievement("Heroik", "/assets/Icons/Heroic.png");
+  } else if (currentLevel === 3) {
+    addAchievement("Star Collector", "/assets/items/star1.png");
+    addAchievement("Penyelamat Bumi", "/assets/Icons/Bumi.png");
+  }
+
+  // Periksa data pencapaian di localStorage dan tambahkan ke dalam container
+  let achievementData = JSON.parse(localStorage.getItem("achievementData")) || {};
+  if (achievementData[currentLevel]) {
+    Object.keys(achievementData[currentLevel]).forEach((key) => {
+      addAchievement(achievementData[currentLevel][key], "/assets/achievements/default.png");
+    });
+  }
 
   if (currentLevel === 2) {
     // Jika level saat ini adalah 2, tampilkan gambar mob dan hitung skor berdasarkan mob

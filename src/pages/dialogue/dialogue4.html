@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Dialog</title>
+    <link rel="stylesheet" href="/style/dialogue/dialogue.css" />
+    <link rel="stylesheet" href="/style/dialogue/dialogue3.css" />
+    <link rel="stylesheet" href="/style/globals.css" />
+  </head>
+  <body>
+    <audio autoplay loop">
+      <source src="/assets/Backsounds/Energizing.mp3"/>
+    </audio>
+    <img
+      src="/assets/Main Character/Hero 1/Bernafas.gif"
+      alt="Character"
+      class="character-img"
+      id="character-img"
+    />
+    <div class="dialog-container">
+      <div class="dialog-box" id="dialog-text">
+        ...
+      </div>
+      <div class="dialog-buttons">
+        <button class="btn" id="prev-btn" style="display: none">Sebelumnya</button>
+        <button class="btn" id="next-btn">Berikutnya</button>
+      </div>
+    </div>
+    <script src="/script/dialogue/dialogue4.mjs" type="module"></script>
+  </body>
+</html>

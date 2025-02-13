@@ -1,0 +1,40 @@
+.the-end {
+    display: flex;
+    gap: 32px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    background-image: url("/assets/Backgrounds/Bridge/sky bridge.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.title {
+    text-align: center;
+    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+    color: white;
+    font-weight: bold;
+    font-size: 20rem;
+    animation: ajepAjep 1s infinite;
+}
+
+.button_text {
+    font-size: 32px;
+}
+
+@keyframes ajepAjep {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        transform: scale(1.1) rotate(3deg);
+    }
+    50% {
+        transform: scale(1) rotate(0deg);
+    }
+    75% {
+        transform: scale(1.1) rotate(-3deg);
+    }
+}

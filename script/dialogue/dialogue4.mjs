@@ -1,22 +1,22 @@
 const dialogs = [
   {
-    text: "",
+    text: "Akhirnya sampah - sampah ini sudah berhasil aku dibersihkan!",
     speaker: "hero",
   },
   {
-    text: "",
+    text: "Aku harus segera pergi ke daerah perkotaan untuk membersihkan sampah disana!",
     speaker: "hero",
   },
   {
-    text: "",
+    text: "Menakjubkan! aku telah memperhatikanmu sejak tadi, kamu benar - benar hebat!",
     speaker: "jedd",
   },
   {
-    text: "",
+    text: "S..siapa kamu?",
     speaker: "hero",
   },
   {
-    text: "",
+    text: "Salam Kenal, Jedd. Kebetulan aku juga memiliki tujuan yang sama denganmu, yaitu mengembalikan keindahan bumi kita!",
     speaker: "jedd",
   },
 ];
@@ -27,13 +27,15 @@ const prevBtn = document.getElementById("prev-btn");
 const nextBtn = document.getElementById("next-btn");
 const characterImg = document.getElementById("character-img");
 
+
+
 function updateDialog() {
   const current = dialogs[currentDialog];
   dialogText.innerText = current.text;
 
   prevBtn.style.display = currentDialog === 0 ? "none" : "inline-block";
 
-  nextBtn.innerText = currentDialog === dialogs.length - 1 ? "Mulai" : "Berikutnya";
+  nextBtn.innerText = currentDialog === dialogs.length - 1 ? "Tamat" : "Berikutnya";
 
   if (current.speaker === "hero") {
     characterImg.src = "/assets/Main Character/Hero 1/Bernafas.gif";
@@ -54,7 +56,7 @@ nextBtn.addEventListener("click", () => {
     currentDialog++;
     updateDialog();
   } else {
-    window.location.href = "/src/pages/levels/level_3.html";
+    window.location.href = "/src/pages/theEnd.html";
   }
 });
 
