@@ -1,14 +1,23 @@
 const dialogs = [
   {
-    text: "Waah! Tempat ini benar - benar kotor!",
+    text: "",
     speaker: "hero",
   },
   {
-    text: "Aku harus segera bertindak, kalau tidak kondisi bumi akan semakin parah!",
+    text: "",
     speaker: "hero",
-  },{
-    text: "Tekan F untuk memungut sampah",
-    speaker: "tutorial",
+  },
+  {
+    text: "",
+    speaker: "jedd",
+  },
+  {
+    text: "",
+    speaker: "hero",
+  },
+  {
+    text: "",
+    speaker: "jedd",
   },
 ];
 
@@ -22,19 +31,14 @@ function updateDialog() {
   const current = dialogs[currentDialog];
   dialogText.innerText = current.text;
 
-  // Hide Prev button if on first dialog
   prevBtn.style.display = currentDialog === 0 ? "none" : "inline-block";
 
-  // Change Next button to Play if on last dialog
   nextBtn.innerText = currentDialog === dialogs.length - 1 ? "Mulai" : "Berikutnya";
 
-  // Update image based on the speaker
   if (current.speaker === "hero") {
     characterImg.src = "/assets/Main Character/Hero 1/Bernafas.gif";
-  } else if (current.speaker === "goblin") {
-    characterImg.src = "/assets/Mobs/Goblin/Bernafas.gif"; // Update with Goblin image path
-  } else if (current.speaker === "tutorial") {
-    characterImg.src = "/assets/Icons/Heroic.png"; // Update with tutorial icon
+  } else if (current.speaker === "jedd") {
+    characterImg.src = "/assets/Main Character/Hero 2/Bernafas.gif";
   }
 }
 
@@ -50,7 +54,7 @@ nextBtn.addEventListener("click", () => {
     currentDialog++;
     updateDialog();
   } else {
-    window.location.href = "/src/pages/levels/level_1.html";
+    window.location.href = "/src/pages/levels/level_3.html";
   }
 });
 

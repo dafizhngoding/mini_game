@@ -13,6 +13,8 @@ const dialogs = [
   },
 ];
 
+localStorage.removeItem("allItemCollected");
+
 let currentDialog = 0;
 const dialogText = document.getElementById("dialog-text");
 const prevBtn = document.getElementById("prev-btn");

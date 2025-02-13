@@ -13,8 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let trashCount = collectedTrash.length; // Hitung jumlah sampah yang dikumpulkan
 
   // Ambil data mob dari localStorage
-  let collectedMobs =
-    JSON.parse(localStorage.getItem("allMobs")) || [];
+  let collectedMobs = JSON.parse(localStorage.getItem("allMobs")) || [];
   let mobCount = collectedMobs.length; // Hitung jumlah mob yang dikumpulkan
 
   // Simpan data bintang ke localStorage berdasarkan level yang dimainkan
@@ -50,9 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Hitung jumlah bintang berdasarkan jumlah mob yang dikumpulkan
     let starCount = 1; // Default 1 bintang
 
-    if (mobCount >= 9) {
+    if (mobCount >= 6) {
       starCount = 3;
-    } else if (mobCount >= 6) {
+    } else if (mobCount < 6) {
       starCount = 2;
     }
 
@@ -60,18 +59,41 @@ document.addEventListener("DOMContentLoaded", () => {
     let starsData = JSON.parse(sessionStorage.getItem("starsData")) || {}; // Ambil data bintang sebelumnya
     if (!starsData[currentLevel] || starsData[currentLevel] < starCount) {
       starsData[currentLevel] = starCount;
-      let achievementDataLocal = JSON.parse(localStorage.getItem("achievementData")) || {};
-      let achievementDataSession = JSON.parse(sessionStorage.getItem("achievementData")) || {};
+      let achievementDataLocal =
+        JSON.parse(localStorage.getItem("achievementData")) || {};
+      let achievementDataSession =
+        JSON.parse(sessionStorage.getItem("achievementData")) || {};
       if (!achievementDataLocal && !achievementDataSession) {
-        localStorage.setItem("achievementData", JSON.stringify({ [currentLevel]: starCount }));
-        sessionStorage.setItem("achievementData", JSON.stringify({ [currentLevel]: starCount }));
+        localStorage.setItem(
+          "achievementData",
+          JSON.stringify({ [currentLevel]: starCount })
+        );
+        sessionStorage.setItem(
+          "achievementData",
+          JSON.stringify({ [currentLevel]: starCount })
+        );
       } else {
         if (achievementDataSession) {
-          sessionStorage.setItem("achievementData", JSON.stringify({ ...achievementDataSession, [currentLevel]: starCount }));
+          sessionStorage.setItem(
+            "achievementData",
+            JSON.stringify({
+              ...achievementDataSession,
+              [currentLevel]: starCount,
+            })
+          );
         } else {
-          sessionStorage.setItem("achievementData", JSON.stringify({ ...achievementDataLocal, [currentLevel]: starCount }));
+          sessionStorage.setItem(
+            "achievementData",
+            JSON.stringify({
+              ...achievementDataLocal,
+              [currentLevel]: starCount,
+            })
+          );
         }
-        localStorage.setItem("achievementData", JSON.stringify({ ...achievementDataLocal, [currentLevel]: starCount }));
+        localStorage.setItem(
+          "achievementData",
+          JSON.stringify({ ...achievementDataLocal, [currentLevel]: starCount })
+        );
       }
       let starSession = JSON.parse(sessionStorage.getItem("starsData"));
       let starLocal = JSON.parse(localStorage.getItem("starsData"));
@@ -98,7 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   } else if (currentLevel === 3) {
     localStorage.setItem("allMobs", JSON.stringify([]));
-    localStorage.setItem("allItemCollected", JSON.stringify([]));
     // Jika level saat ini adalah 3, tampilkan gambar sampah dan mob
     scoreImage.src = "/assets/items/2.png"; // Gambar sampah
     scoreImage.classList.remove("goblin"); // Hapus kelas goblin jika ada
@@ -147,18 +168,41 @@ document.addEventListener("DOMContentLoaded", () => {
     let starsData = JSON.parse(sessionStorage.getItem("starsData")) || {}; // Ambil data bintang sebelumnya
     if (!starsData[currentLevel] || starsData[currentLevel] < starCount) {
       starsData[currentLevel] = starCount;
-      let achievementDataLocal = JSON.parse(localStorage.getItem("achievementData")) || {};
-      let achievementDataSession = JSON.parse(sessionStorage.getItem("achievementData")) || {};
+      let achievementDataLocal =
+        JSON.parse(localStorage.getItem("achievementData")) || {};
+      let achievementDataSession =
+        JSON.parse(sessionStorage.getItem("achievementData")) || {};
       if (!achievementDataLocal && !achievementDataSession) {
-        localStorage.setItem("achievementData", JSON.stringify({ [currentLevel]: starCount }));
-        sessionStorage.setItem("achievementData", JSON.stringify({ [currentLevel]: starCount }));
+        localStorage.setItem(
+          "achievementData",
+          JSON.stringify({ [currentLevel]: starCount })
+        );
+        sessionStorage.setItem(
+          "achievementData",
+          JSON.stringify({ [currentLevel]: starCount })
+        );
       } else {
         if (achievementDataSession) {
-          sessionStorage.setItem("achievementData", JSON.stringify({ ...achievementDataSession, [currentLevel]: starCount }));
+          sessionStorage.setItem(
+            "achievementData",
+            JSON.stringify({
+              ...achievementDataSession,
+              [currentLevel]: starCount,
+            })
+          );
         } else {
-          sessionStorage.setItem("achievementData", JSON.stringify({ ...achievementDataLocal, [currentLevel]: starCount }));
+          sessionStorage.setItem(
+            "achievementData",
+            JSON.stringify({
+              ...achievementDataLocal,
+              [currentLevel]: starCount,
+            })
+          );
         }
-        localStorage.setItem("achievementData", JSON.stringify({ ...achievementDataLocal, [currentLevel]: starCount }));
+        localStorage.setItem(
+          "achievementData",
+          JSON.stringify({ ...achievementDataLocal, [currentLevel]: starCount })
+        );
       }
       let starSession = JSON.parse(sessionStorage.getItem("starsData"));
       let starLocal = JSON.parse(localStorage.getItem("starsData"));
@@ -217,18 +261,41 @@ document.addEventListener("DOMContentLoaded", () => {
     let starsData = JSON.parse(sessionStorage.getItem("starsData")) || {}; // Ambil data bintang sebelumnya
     if (!starsData[currentLevel] || starsData[currentLevel] < starCount) {
       starsData[currentLevel] = starCount;
-      let achievementDataLocal = JSON.parse(localStorage.getItem("achievementData")) || {};
-      let achievementDataSession = JSON.parse(sessionStorage.getItem("achievementData")) || {};
+      let achievementDataLocal =
+        JSON.parse(localStorage.getItem("achievementData")) || {};
+      let achievementDataSession =
+        JSON.parse(sessionStorage.getItem("achievementData")) || {};
       if (!achievementDataLocal && !achievementDataSession) {
-        localStorage.setItem("achievementData", JSON.stringify({ [currentLevel]: starCount }));
-        sessionStorage.setItem("achievementData", JSON.stringify({ [currentLevel]: starCount }));
+        localStorage.setItem(
+          "achievementData",
+          JSON.stringify({ [currentLevel]: starCount })
+        );
+        sessionStorage.setItem(
+          "achievementData",
+          JSON.stringify({ [currentLevel]: starCount })
+        );
       } else {
         if (achievementDataSession) {
-          sessionStorage.setItem("achievementData", JSON.stringify({ ...achievementDataSession, [currentLevel]: starCount }));
+          sessionStorage.setItem(
+            "achievementData",
+            JSON.stringify({
+              ...achievementDataSession,
+              [currentLevel]: starCount,
+            })
+          );
         } else {
-          sessionStorage.setItem("achievementData", JSON.stringify({ ...achievementDataLocal, [currentLevel]: starCount }));
+          sessionStorage.setItem(
+            "achievementData",
+            JSON.stringify({
+              ...achievementDataLocal,
+              [currentLevel]: starCount,
+            })
+          );
         }
-        localStorage.setItem("achievementData", JSON.stringify({ ...achievementDataLocal, [currentLevel]: starCount }));
+        localStorage.setItem(
+          "achievementData",
+          JSON.stringify({ ...achievementDataLocal, [currentLevel]: starCount })
+        );
       }
       let starSession = JSON.parse(sessionStorage.getItem("starsData"));
       let starLocal = JSON.parse(localStorage.getItem("starsData"));
@@ -284,12 +351,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const interval = setInterval(() => {
       if (currentScore < targetScore) {
         currentScore++;
-        scoreText.textContent = `${currentScore} / 9`;
+        if (currentLevel === 3) {
+          scoreText.textContent = `${currentScore} / 8`;
+        } else if (currentLevel === 2) {
+          scoreText.textContent = `${currentScore} / 9`;
+        } else {
+          scoreText.textContent = `${currentScore} / 22`;
+        }
       } else {
         clearInterval(interval);
 
         let currentPoints = 0;
-        const targetPoints = currentLevel === 2 ? mobCount * 150 : trashCount * 100; // Perbaiki poin per mob menjadi 150
+        const targetPoints =
+          currentLevel === 2 ? mobCount * 150 : trashCount * 100; // Perbaiki poin per mob menjadi 150
         const pointsInterval = setInterval(() => {
           if (currentPoints < targetPoints) {
             currentPoints += 50;
