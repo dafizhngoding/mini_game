@@ -27,7 +27,8 @@ import {
     removeTakenMobs,
 } from "./levels/level_2.mjs";
 import {
-    CreateLevel_3
+    CreateLevel_3,
+    removeTakenItemsLvl3
 } from "./levels/level_3.mjs";
 // import {
 //     CreateLevel_3,
@@ -212,13 +213,20 @@ if (level === "level_3") {
         // storage
         let coll = JSON.parse(sessionStorage.getItem("collectionPlayer")) || [];
         let MobsKilled = JSON.parse(sessionStorage.getItem("defeatedMobsLevel3")) || [];
-        removeTakenItems();
+        let MobsKilledStage = JSON.parse(sessionStorage.getItem("defeatedMobsLevel3Stage")) || [];
+        // removeTakenItems();
+        removeTakenItemsLvl3();
+        console.log(removeTakenItemsLvl3());
+
 
         // logic
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         let allObjects = [currentLevel.Player, ...currentLevel.mobs];
+        let allObjectsItem = [currentLevel.Player, ...currentLevel.items];
         let mobDetected = detectCollisionsMobs(allObjects);
+        let itemDetected = itemsDetectorColl(allObjectsItem);
+        console.log(itemDetected);
         console.log(mobDetected);
 
         let stageReturn = handleStageLvl(level, coll);
@@ -226,45 +234,60 @@ if (level === "level_3") {
 
         // let array =[2,3]
         let activeMobs = currentLevel.mobs;
+
+
+        let ItemsIDNonActive = coll.map(i => i.id);
+
         
         
         let MobsID = MobsKilled.map(m => m?.id) || [];
         activeMobs = activeMobs.filter(m => MobsID.includes(m.id));
        // Ambil hanya mobs yang ada di array [2,3] dan hilangkan yang tidak hidup (ada di MobsKilled)
     
-
+// Variabel untuk memastikan mobs pertama kali tetap muncul
+        let firstSpawn = sessionStorage.getItem("firstSpawn") !== "true";
+        
+         if (firstSpawn) {
+             sessionStorage.setItem("firstSpawn", "true"); // Tandai bahwa game sudah pernah dijalankan
+         }
        // Filter mobs yang masih hidup setelah menghapus yang ada di MobsKilled
-       let MobsAlive = currentLevel.mobs.filter(m => !MobsID.includes(m.id));
+       currentLevel.items.slice(stageReturn.firstAmount, stageReturn.ItemAmount).filter(i => !ItemsIDNonActive.includes(i.id)).map(i => i.draw(ctx));
+        let MobsAlive = currentLevel.mobs.filter(m => !MobsID.includes(m.id));
+        let respawnMobs = firstSpawn ||MobsKilledStage.length  < stageReturn.targetStage
+        if (respawnMobs) {
+            MobsAlive.slice(0, 1).forEach(m => {
+                m.draw(ctx);
+                m.followPlayer(currentLevel.Player);
+            });
+     
+             const attack = MobsAlive.slice(0,1).filter((mob, index) => mob.id !== MobsID.at(index)).map(mob => mob.followPlayer(currentLevel.Player, currentLevel.Mobs));
+             console.log(attack.at(0)?.attack);
+                     if (attack.at(0)?.attack === true) {
+                         let currentTime = Date.now();
+                         if (currentTime - lastAttackTime > attackCooldown) {
+                             let hp = document.getElementById("hp");
+                             let currentHp = parseFloat(getComputedStyle(hp).width);
+     
+                             if (currentHp > 0) {
+                                 hp.style.width = Math.max(0, currentHp - 50) + 'px';
+                             } else if (currentHp <= 0) {
+                                 currentLevel.Player.dead()
+                                 setTimeout(() => {
+                                     window.location.href = "/src/pages/gameOver.html"
+                                 }, 2500)
+                             }
+     
+                             lastAttackTime = currentTime;
+                         }
+             }
+        } else {
+        }
 
        // Menampilkan dan menggerakkan hanya mobs yang masih hidup
-       MobsAlive.slice(0, 1).forEach(m => {
-           m.draw(ctx);
-           m.followPlayer(currentLevel.Player);
-       });
 
-        const attack = MobsAlive.slice(0,1).filter((mob, index) => mob.id !== MobsID.at(index)).map(mob => mob.followPlayer(currentLevel.Player, currentLevel.Mobs));
-        console.log(attack.at(0)?.attack);
-                if (attack.at(0)?.attack === true) {
-                    let currentTime = Date.now();
-                    if (currentTime - lastAttackTime > attackCooldown) {
-                        let hp = document.getElementById("hp");
-                        let currentHp = parseFloat(getComputedStyle(hp).width);
-
-                        if (currentHp > 0) {
-                            hp.style.width = Math.max(0, currentHp - 50) + 'px';
-                        } else if (currentHp <= 0) {
-                            currentLevel.Player.dead()
-                            setTimeout(() => {
-                                window.location.href = "/src/pages/gameOver.html"
-                            }, 2500)
-                        }
-
-                        lastAttackTime = currentTime;
-                    }
-                }
-
-        currentLevel.Player.draw(ctx, mobDetected?.objA, mobDetected?.objB);
+        currentLevel.Player.draw(ctx, mobDetected?.objA, mobDetected?.objB, itemDetected?.items);
         currentLevel.Player.setCollision(currentLevel.Player, ctx);
+        currentLevel.Player.collectItems(itemDetected, level, input);
         currentLevel.Player.move(input, undefined, undefined, currentLevel.name, undefined);
         currentLevel.Player.attackMobs(input, mobDetected?.objB, level);
         requestAnimationFrame(gameLoop);

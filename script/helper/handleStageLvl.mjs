@@ -5,11 +5,12 @@ import {
 export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
     let stageDisplayed = JSON.parse(sessionStorage.getItem("stageDisplayed")) || false;
     let ItemAmount = 4;
+    let targetStage = 0;
     let MobsAmount = 1;
     let firstMobs = 0
     let firstAmount = 0;
     let defeatedMobsLvl2 = JSON.parse(sessionStorage.getItem("defeatedMobsLevel2Stage"))
-    let defeatedMobsLvl3 = JSON.parse(sessionStorage.getItem("defeatedMobsLevel3Stage"))
+    let defeatedMobsLvl3 = JSON.parse(sessionStorage.getItem("defeatedMobsLevel3Stage")) || 0;
     let dataCleared = JSON.parse(sessionStorage.getItem("dataCleared")) || false;
     let isFinish = JSON.parse(sessionStorage.getItem("levelCompleted")) || false;
 
@@ -172,19 +173,18 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                         setTimeout(() => {
                             stageText.classList.remove("show");
                             stageText.classList.add("hide");
+                            isFinish = true
                             document.getElementById("item").innerText = `0/6`;
                             sessionStorage.setItem("stageDisplayed", false);
                             sessionStorage.setItem("levelCompleted", true);
-
                             resetSessionStorage();
+                            window.location.href = "/src/pages/missionSuccess.html"
+                            firstAmount = 0;
+                            ItemAmount = 0;
                         }, 2000);
                     }, 500);
-                    if (isFinish === true && document.getElementById("stage").innerText === "4/4") {
-                        firstAmount = 0;
-                        ItemAmount = 0;
-                        window.location.href = "/src/pages/missionSuccess.html"
-                    }
                 }
+
 
 
 
@@ -197,6 +197,7 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                     sessionStorage.setItem("dataCleared", true);
                 }
             }
+
 
 
 
@@ -274,7 +275,7 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
 
             if (document.getElementById("stage").innerText === "3/4") {
                 if (defeatedMobsLvl2 !== null) {
-                    document.getElementById("mobs").innerText = `${defeatedMobsLvl2.length}/3`
+                    document.getElementById("mobs").innerText = `${ defeatedMobsLvl2.length}/3`
                 }
 
                 if (document.getElementById("mobs").innerText === "3/3" && !stageDisplayed) {
@@ -367,12 +368,11 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
             sessionStorage.setItem("levelCompleted", false);
 
             if (document.getElementById("stage").innerText === "1/4") {
-                if (defeatedMobsLvl3 !== null) {
-                    document.getElementById("mobs").innerText = `${defeatedMobsLvl3.length}/1`
+                if (defeatedMobsLvl3 !== null || coll !== null) {
+                    document.getElementById("items").innerText = `${coll.length}/2`
+                    document.getElementById("mobs").innerText = `${ defeatedMobsLvl3 ? defeatedMobsLvl3?.length : 0}/1`
                 }
-                if (document.getElementById("mobs").innerText === "1/1") {
-
-
+                if (document.getElementById("mobs").innerText === "1/1" && document.getElementById("items").innerText === "2/2") {
                     document.getElementById("stage").innerText = "2/4";
                     let stageText = document.getElementById("stageText");
                     document.getElementById("state_stage").innerText = `2`;
@@ -387,17 +387,23 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                             stageText.classList.add("hide");
                             sessionStorage.setItem("stageDisplayed", false);
                             document.getElementById("mobs").innerText = `0/2`;
+                            document.getElementById("items").innerText = `0/2`;
                         }, 2000);
                     }, 500);
                 }
+                firstAmount = 0;
+                ItemAmount = 2;
+                targetStage = 1;
             }
 
             if (document.getElementById("stage").innerText === "2/4") {
-                if (defeatedMobsLvl3 !== null) {
-                    document.getElementById("mobs").innerText = `${defeatedMobsLvl3.length}/2`
+                if (defeatedMobsLvl3 !== null || coll !== null) {
+                    document.getElementById("items").innerText = `${coll.length}/2`
+
+                    document.getElementById("mobs").innerText = `${defeatedMobsLvl3 ? defeatedMobsLvl3?.length : 0}/2`
                 }
 
-                if (document.getElementById("mobs").innerText === "2/2" && !stageDisplayed) {
+                if (document.getElementById("mobs").innerText === "2/2" && document.getElementById("items").innerText === "2/2" && !stageDisplayed) {
                     stageDisplayed = true;
                     document.getElementById("stage").innerText = "3/4";
                     let stageText = document.getElementById("stageText");
@@ -413,19 +419,26 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                             stageText.classList.add("hide");
                             sessionStorage.setItem("stageDisplayed", false);
                             document.getElementById("mobs").innerText = `0/3`;
+                            document.getElementById("items").innerText = `0/2`;
+
                         }, 2000);
                     }, 500);
                 }
 
-                firstAmount = 1;
+                firstMobs = 1;
                 MobsAmount = 2;
+                firstAmount = 2;
+                ItemAmount = 4;
+                targetStage = 2;
             }
 
             if (document.getElementById("stage").innerText === "3/4") {
-                if (defeatedMobsLvl3 !== null) {
-                    document.getElementById("mobs").innerText = `${defeatedMobsLvl3.length}/3`
+                if (defeatedMobsLvl3 !== null || coll !== null) {
+                    document.getElementById("items").innerText = `${coll.length}/2`
+
+                    document.getElementById("mobs").innerText = `${ defeatedMobsLvl3 ?defeatedMobsLvl3?.length : 0}/3`
                 }
-                if (document.getElementById("mobs").innerText === "3/3" && !stageDisplayed) {
+                if (document.getElementById("mobs").innerText === "3/3" && document.getElementById("items").innerText === "2/2" && !stageDisplayed) {
                     stageDisplayed = true
                     document.getElementById("stage").innerText = "4/4";
                     let stageText = document.getElementById("stageText");
@@ -441,25 +454,32 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                             stageText.classList.add("hide");
                             sessionStorage.setItem("stageDisplayed", false);
                             document.getElementById("mobs").innerText = `0/4`;
+                            document.getElementById("items").innerText = `0/2`;
+
                         }, 2000);
                     }, 500);
                 }
-                firstAmount = 2;
+                firstMobs = 2;
                 MobsAmount = 4;
+                firstAmount = 4;
+                ItemAmount = 6;
+                targetStage = 3;
             }
-
+            
             if (document.getElementById("stage").innerText === "4/4") {
-                if (defeatedMobsLvl3 !== null) {
-                    document.getElementById("mobs").innerText = `${defeatedMobsLvl3.length}/3`
+                if (defeatedMobsLvl3 !== null || coll !== null) {
+                    document.getElementById("items").innerText = `${coll.length}/2`
+
+                    document.getElementById("mobs").innerText = `${ defeatedMobsLvl3 ? defeatedMobsLvl3?.length: 0}/3`
                 }
-                if (document.getElementById("mobs").innerText === "3/3" && !stageDisplayed) {
+                if (document.getElementById("mobs").innerText === "3/3" && document.getElementById("items").innerText === "2/2" && !stageDisplayed){ 
                     stageDisplayed = true;
                     document.getElementById("stage").innerText = "4/4";
-                    let storage = JSON.parse(sessionStorage.getItem("defeatedMobsLevel2"))
+                    let storage = JSON.parse(sessionStorage.getItem("defeatedMobsLevel3"))
                     localStorage.setItem("allMobs", JSON.stringify(storage));
                     let stageText = document.getElementById("stageText");
                     document.getElementById("state_stage").innerText = `Completed`;
-                    sessionStorage.removeItem("defeatedMobsLevel3Stage");
+                    // sessionStorage.removeItem("defeatedMobsLevel3Stage");
                     setTimeout(() => {
                         resetSessionStorage();
                         sessionStorage.removeItem("defeatedMobsLevel3Stage");
@@ -471,17 +491,22 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
                             sessionStorage.setItem("stageDisplayed", false);
                             sessionStorage.setItem("levelCompleted", true);
                             document.getElementById("mobs").innerText = `4/4`;
+                            document.getElementById("items").innerText = `0/2`;
+                            firstMobs = 0;
+                            MobsAmount = 0;
+                            window.location.href = "/src/pages/missionSuccess.html"
+
                         }, 2000);
-                    }, 500);
+                        }, 500);
+                    console.log("berhasil");
                 }
+
+                firstAmount = 6;
+                ItemAmount = 8;
+                targetStage = 3;
             }
 
 
-            if (isFinish === true && document.getElementById("stage").innerText === "4/4") {
-                firstMobs = 0;
-                MobsAmount = 0;
-                window.location.href = "/src/pages/missionSuccess.html"
-            }
             break;
         default:
             console.log("Level not found");
@@ -493,6 +518,7 @@ export const handleStageLvl = (level, coll, currentLevel, mob = {}) => {
         ItemAmount,
         firstAmount,
         firstMobs,
-        MobsAmount
+        MobsAmount,
+        targetStage
     };
 };

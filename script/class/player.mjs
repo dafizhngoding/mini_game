@@ -2,6 +2,7 @@ import {
     dataItemsLVL1,
     removeItems
 } from "../../data/level_1.mjs";
+import { itemsLvl3, removeItemsLvl3 } from "../levels/level_3.mjs";
 import {
     collision
 } from "./collision.mjs";
@@ -158,10 +159,13 @@ export class Player {
         if (!item || !item.items) {
             return;
         }
-
         switch (level) {
             case "level_1":
                 dataItems = dataItemsLVL1;
+                break;
+            case "level_3":
+                dataItems = itemsLvl3;
+                console.log(dataItems);
                 break;
             default:
                 return;
@@ -169,6 +173,7 @@ export class Player {
         if (input.keys.f) {
             let collectionSession = JSON.parse(sessionStorage.getItem("collectionPlayer")) || [];
             const isDuplicate = collectionSession.some(itm => itm?.id === item.items?.id);
+            
 
             if (!isDuplicate) {
                 collectionSession.push(item.items);
@@ -176,19 +181,19 @@ export class Player {
                 if (!score) {
 
                     sessionStorage.setItem("score", JSON.stringify(100))
-                    document.getElementById("score").innerText = `${score || 0}`
+                    // document.getElementById("score").innerText = `${score || 0}`
                 } else {
                     sessionStorage.setItem("score", JSON.stringify(score + 100));
-                    document.getElementById("score").innerText = `${score + 100 || 0}`
+                    // document.getElementById("score").innerText = `${score + 100 || 0}`
 
                 }
-                removeItems(item.items?.id);                // console.log(removeItems(item.items?.id));
+                level === "level_1" ?removeItems(item.items?.id) : removeItemsLvl3(item.items?.id)             // console.log(removeItems(item.items?.id));
             } else {}
 
             collectionSession = collectionSession.filter(itm => itm !== null && itm !== undefined);
 
             collectionSession = [...new Map(collectionSession.map(itm => [itm?.id, itm])).values()];
-
+console.log(collectionSession);
             sessionStorage.setItem("collectionPlayer", JSON.stringify(collectionSession));
         }
     }
@@ -227,7 +232,7 @@ export class Player {
     }
 
 
-    draw(ctx, player = undefined || {}, mobs = undefined || {}) {
+    draw(ctx, player = undefined || {}, mobs = undefined || {}, items = undefined || {}) {
 
         if (player.name === "player") {
             console.log("player");
@@ -248,6 +253,8 @@ export class Player {
                 ctx.fillText("E", (this.x + this.width / 2.5) + 36 / 2, this.y + 38 / 2);
             }
 
+           
+
             ctx.scale(-1, 1); 
             ctx.drawImage(playerImage, -this.x - this.width, this.y, this.width, this.height);
         } else {
@@ -263,6 +270,7 @@ export class Player {
                 ctx.fillText("E", (this.x + this.width / 2.5) + 36 / 2, this.y + 38 / 2);
 
             }
+            
         }
 
         ctx.restore(); 

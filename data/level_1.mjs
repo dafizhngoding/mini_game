@@ -39,6 +39,7 @@ export function removeItems(itemId) {
 
 
 export function removeTakenItems() {
+    
     // Ambil item yang sudah dikoleksi dari sessionStorage
     let takenItems = JSON.parse(sessionStorage.getItem("collectionPlayer")) || [];
 
