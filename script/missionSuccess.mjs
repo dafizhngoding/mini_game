@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   } else if (currentLevel === 3) {
     localStorage.setItem("allMobs", JSON.stringify([]));
-    localStorage.setItem("allMobs", JSON.stringify([]));
+    localStorage.setItem("allItemCollected", JSON.stringify([]));
     // Jika level saat ini adalah 3, tampilkan gambar sampah dan mob
     scoreImage.src = "/assets/items/2.png"; // Gambar sampah
     scoreImage.classList.remove("goblin"); // Hapus kelas goblin jika ada
@@ -112,34 +112,34 @@ document.addEventListener("DOMContentLoaded", () => {
     // Tambahkan teks untuk jumlah mob yang dikumpulkan
     const mobCountText = document.createElement("div");
     mobCountText.classList.add("mob-count");
-    mobCountText.textContent = `Mobs: ${mobCount} / 22`;
+    mobCountText.textContent = `Mobs: ${mobCount} / 9`;
     scoreImage.parentNode.appendChild(mobCountText);
 
     // Update tampilan skor sampah dan mob yang terkumpul
-    scoreText.textContent = `${trashCount} / 22 (Trash), ${mobCount} / 22 (Mobs)`;
+    scoreText.textContent = `${trashCount} / 8, ${mobCount} / 9`;
 
-    // Hitung total skor (misalnya 100 poin per sampah dan 300 poin per mob)
-    let totalScore = trashCount * 100 + mobCount * 300;
+    // Hitung total skor (misalnya 100 poin per sampah dan 150 poin per mob)
+    let totalScore = trashCount * 100 + mobCount * 150;
 
     // Atur gambar bintang berdasarkan jumlah sampah dan mob yang dikumpulkan
-    if (trashCount + mobCount >= 22) {
+    if (trashCount + mobCount >= 17) {
       stars.forEach((star) => (star.src = "/assets/items/star1.png"));
-    } else if (trashCount + mobCount >= 15) {
+    } else if (trashCount + mobCount >= 12) {
       stars[0].src = "/assets/items/star1.png"; // Bintang pertama star1
-      stars[1].src = "/assets/items/star2.png"; // Bintang kedua star2
+      stars[1].src = "/assets/items/star1.png"; // Bintang kedua star2
       stars[2].src = "/assets/items/star2.png"; // Bintang ketiga star2
     } else {
       stars[0].src = "/assets/items/star1.png"; // Bintang pertama star1
-      stars[1].src = "/assets/items/star1.png"; // Bintang kedua star1
+      stars[1].src = "/assets/items/star2.png"; // Bintang kedua star1
       stars[2].src = "/assets/items/star2.png"; // Bintang ketiga star2
     }
 
     // Hitung jumlah bintang berdasarkan jumlah sampah dan mob yang dikumpulkan
     let starCount = 1; // Default 1 bintang
 
-    if (trashCount + mobCount >= 22) {
+    if (trashCount + mobCount >= 17) {
       starCount = 3;
-    } else if (trashCount + mobCount >= 15) {
+    } else if (trashCount + mobCount >= 12) {
       starCount = 2;
     }
 
@@ -186,30 +186,30 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     // Jika level saat ini bukan 2 atau 3, gunakan logika sampah yang ada
     // Update tampilan skor sampah yang terkumpul
-    scoreText.textContent = `${trashCount} / 22`;
+    scoreText.textContent = `${trashCount} / 8`;
 
     // Hitung total skor (misalnya 100 poin per sampah)
     let totalScore = trashCount * 100;
 
     // Atur gambar bintang berdasarkan jumlah sampah yang dikumpulkan
-    if (trashCount === 22 || trashCount >= 15) {
+    if (trashCount === 8 || trashCount >= 5) {
       stars.forEach((star) => (star.src = "/assets/items/star1.png"));
-    } else if (trashCount < 15) {
+    } else if (trashCount < 5) {
       stars[0].src = "/assets/items/star1.png"; // Bintang pertama star1
-      stars[1].src = "/assets/items/star2.png"; // Bintang kedua star2
+      stars[1].src = "/assets/items/star1.png"; // Bintang kedua star2
       stars[2].src = "/assets/items/star2.png"; // Bintang ketiga star2
     } else {
       stars[0].src = "/assets/items/star1.png"; // Bintang pertama star1
-      stars[1].src = "/assets/items/star1.png"; // Bintang kedua star1
+      stars[1].src = "/assets/items/star2.png"; // Bintang kedua star1
       stars[2].src = "/assets/items/star2.png"; // Bintang ketiga star2
     }
 
     // Hitung jumlah bintang berdasarkan jumlah sampah yang dikumpulkan
     let starCount = 1; // Default 1 bintang
 
-    if (trashCount >= 22) {
+    if (trashCount >= 5) {
       starCount = 3;
-    } else if (trashCount >= 15) {
+    } else if (trashCount < 5) {
       starCount = 2;
     }
 
@@ -284,7 +284,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const interval = setInterval(() => {
       if (currentScore < targetScore) {
         currentScore++;
-        scoreText.textContent = `${currentScore} / 22`;
+        scoreText.textContent = `${currentScore} / 9`;
       } else {
         clearInterval(interval);
 

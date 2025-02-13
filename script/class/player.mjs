@@ -115,6 +115,11 @@ export class Player {
             if (this.isDead === true) {
                 this.imageSrc = "/assets/Main Character/Hero 1/dead.png"
             } else {
+                let count = 1
+                setInterval(() => {
+                    console.log("jalan");
+                    this.imageSrc =`/assets/Main Character/Hero 1/Running/Running/${count === 1 ? 1 : count + 1 > 12 ?12 : count + 1 }.png`;
+                }, 73)
                 this.imageSrc = "/assets/Main Character/Hero 1/Berlari.gif";
                 newY += this.speed
             }
