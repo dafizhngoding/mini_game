@@ -67,8 +67,8 @@ export class Player {
             case "level_1":
                 if (newY > window.innerHeight - 166) {
                     newY = window.innerHeight - 166
-                } else if (newY < window.innerHeight - 668) {
-                    newY = window.innerHeight - 668
+                } else if (newY < window.innerHeight -720) {
+                    newY = window.innerHeight - 720
                 }
                 if (newX < -50) {
                     newX = -50

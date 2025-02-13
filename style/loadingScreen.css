@@ -6,7 +6,8 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    background-color: rgba(0, 0, 0, 0.7);
+    /* background-color: rgba(0, 0, 0, 0.7) */
+    background-image: url("/assets/Backgrounds/Bridge/Forest bridge.png");
 }
 
 .loading-screen h1 {
