@@ -1,19 +1,26 @@
 const dialogs = [
   {
-    text: "Another place ruined by waste. I have to keep going… Wait, what’s that?!",
+    text: "A.. Aku Dimana?",
     speaker: "hero",
   },
   {
-    text: "Hehehe… A clean one? You don’t belong here!",
-    speaker: "goblin",
-  },
-  { text: "What happened to you?! Are you… human?", speaker: "hero" },
-  {
-    text: "Too late! The filth has changed us! And now… you’ll be next!",
-    speaker: "goblin",
+    text: "S.. Siapa kalian?",
+    speaker: "hero",
   },
   {
-    text: "Press Space to attack! Be careful, Goblins will strike if you get too close!",
+    text: "Kalian Manusia kan?",
+    speaker: "hero",
+  },
+  {
+    text: "HAHAHA... Terlambat! Kotoran - kotoran ini telah mengubah kami",
+    speaker: "goblin",
+  },
+  {
+    text: "Kau tukang rongsok tidak layak mengusik wilayah kami!",
+    speaker: "ogre",
+  },
+  {
+    text: "Hati - hati! Mereka akan menyerangmu apabila terlalu dekat, Tekan E untuk bertarung",
     speaker: "tutorial",
   },
 ];
@@ -28,19 +35,18 @@ function updateDialog() {
   const current = dialogs[currentDialog];
   dialogText.innerText = current.text;
 
-  // Hide Prev button if on first dialog
   prevBtn.style.display = currentDialog === 0 ? "none" : "inline-block";
 
-  // Change Next button to Play if on last dialog
-  nextBtn.innerText = currentDialog === dialogs.length - 1 ? "Play" : "Next";
+  nextBtn.innerText = currentDialog === dialogs.length - 1 ? "Mulai" : "Berikutnya";
 
-  // Update image based on the speaker
   if (current.speaker === "hero") {
     characterImg.src = "/assets/Main Character/Hero 1/Bernafas.gif";
   } else if (current.speaker === "goblin") {
-    characterImg.src = "/assets/Mobs/Goblin/Bernafas.gif"; // Update with Goblin image path
+    characterImg.src = "/assets/Mobs/Goblin/Bernafas.gif";
+  } else if (current.speaker === "ogre") {
+    characterImg.src = "/assets/Mobs/Ogre/Bernafas.gif";
   } else if (current.speaker === "tutorial") {
-    characterImg.src = "/assets/Icons/Heroic.png"; // Update with tutorial icon
+    characterImg.src = "/assets/Icons/Heroic.png";
   }
 }
 

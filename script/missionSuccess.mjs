@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Ambil data mob dari localStorage
   let collectedMobs =
-    JSON.parse(localStorage.getItem("allMobsCollected")) || [];
+    JSON.parse(localStorage.getItem("allMobs")) || [];
   let mobCount = collectedMobs.length; // Hitung jumlah mob yang dikumpulkan
 
   // Simpan data bintang ke localStorage berdasarkan level yang dimainkan
@@ -29,15 +29,15 @@ document.addEventListener("DOMContentLoaded", () => {
     scoreImage.classList.add("goblin"); // Tambahkan kelas goblin
 
     // Update tampilan skor mob yang terkumpul
-    scoreText.textContent = `${mobCount} / 22`;
+    scoreText.textContent = `${mobCount} / 9`;
 
-    // Hitung total skor (misalnya 300 poin per mob)
-    let totalScore = mobCount * 300;
+    // Hitung total skor (misalnya 150 poin per mob)
+    let totalScore = mobCount * 150;
 
     // Atur gambar bintang berdasarkan jumlah mob yang dikumpulkan
-    if (mobCount === 22 || mobCount >= 15) {
+    if (mobCount === 9 || mobCount >= 6) {
       stars.forEach((star) => (star.src = "/assets/items/star1.png"));
-    } else if (mobCount < 15) {
+    } else if (mobCount <= 5) {
       stars[0].src = "/assets/items/star1.png"; // Bintang pertama star1
       stars[1].src = "/assets/items/star2.png"; // Bintang kedua star2
       stars[2].src = "/assets/items/star2.png"; // Bintang ketiga star2
@@ -50,9 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Hitung jumlah bintang berdasarkan jumlah mob yang dikumpulkan
     let starCount = 1; // Default 1 bintang
 
-    if (mobCount >= 22) {
+    if (mobCount >= 9) {
       starCount = 3;
-    } else if (mobCount >= 15) {
+    } else if (mobCount >= 6) {
       starCount = 2;
     }
 
@@ -97,6 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   } else if (currentLevel === 3) {
+    localStorage.setItem("allMobs", JSON.stringify([]));
+    localStorage.setItem("allMobs", JSON.stringify([]));
     // Jika level saat ini adalah 3, tampilkan gambar sampah dan mob
     scoreImage.src = "/assets/items/2.png"; // Gambar sampah
     scoreImage.classList.remove("goblin"); // Hapus kelas goblin jika ada
@@ -287,7 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clearInterval(interval);
 
         let currentPoints = 0;
-        const targetPoints = currentLevel === 2 ? mobCount * 300 : trashCount * 100;
+        const targetPoints = currentLevel === 2 ? mobCount * 150 : trashCount * 100; // Perbaiki poin per mob menjadi 150
         const pointsInterval = setInterval(() => {
           if (currentPoints < targetPoints) {
             currentPoints += 50;

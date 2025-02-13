@@ -2,14 +2,29 @@ document.addEventListener("DOMContentLoaded", function () {
   const levels = document.querySelectorAll(".level");
   const levelPopup = document.getElementById("level-popup");
   const levelTitle = document.getElementById("level-title");
+  const levelDescription = document.getElementById("level-description");
   const enterLevelBtn = document.getElementById("enter-level-btn");
   const cancelLevelBtn = document.getElementById("cancel-level-btn");
-  const closeLevelBtn = document.getElementById("close-level-btn");
   const nextChapterBtn = document.getElementById("next-chapter-btn");
   const nextChapterPopup = document.getElementById("popup");
   const closePopupBtn = document.getElementById("close-btn");
 
   let selectedLevel = null;
+
+  const levelDetails = {
+    1: {
+      title: "Langkah Awal",
+      description: "Apakah Anda yakin ingin memasuki level ini?"
+    },
+    2: {
+      title: "Mimpi Buruk",
+      description: "Apakah Anda yakin ingin memasuki level ini?"
+    },
+    3: {
+      title: "Perjuangan Mati - Matian",
+      description: "Apakah Anda yakin ingin memasuki level ini?"
+    }
+  };
 
   function showPopup(popup) {
     popup.classList.add("show");
@@ -40,7 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
     level.addEventListener("click", function () {
       if (!this.classList.contains("locked")) {
         selectedLevel = this.getAttribute("data-level");
-        levelTitle.textContent = `Enter Level ${selectedLevel}`;
+        levelTitle.textContent = levelDetails[selectedLevel].title;
+        levelDescription.textContent = levelDetails[selectedLevel].description;
         showPopup(levelPopup);
       }
     });
@@ -49,17 +65,13 @@ document.addEventListener("DOMContentLoaded", function () {
   enterLevelBtn.addEventListener("click", function () {
     window.location.href =
       "/src/pages/dialogue/dialogue" + selectedLevel + ".html";
-      let currentLevel = parseInt(sessionStorage.setItem("currentLevel", selectedLevel));
+    let currentLevel = parseInt(sessionStorage.setItem("currentLevel", selectedLevel));
     localStorage.setItem("currentLevel", selectedLevel);
     localStorage.removeItem("allMobs")
     hidePopup(levelPopup);
   });
 
   cancelLevelBtn.addEventListener("click", function () {
-    hidePopup(levelPopup);
-  });
-
-  closeLevelBtn.addEventListener("click", function () {
     hidePopup(levelPopup);
   });
 
